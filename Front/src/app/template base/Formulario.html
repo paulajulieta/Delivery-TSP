@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Formulario </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/lux/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-smnSwzHqW1zKbeuSMsAM/fMQpkk7HY11LuHiwT8snL/W2QBoZtVCT4H5x1CEcJCs" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- copiar solo el div-->
+  <div class="container">
+    <h2> <i class='fas fa-arrow-left'></i></h2>
+
+    <div class="card">
+      <div class="card-header">Header</div>
+      <div class="card-body">
+
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">nombre</span>
+          </div>
+          <input type="text" class="form-control" placeholder="nombre" aria-label="nombre"
+            aria-describedby="basic-addon1" [(ngModel)]="persona.nombre">
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon2">apellido</span>
+          </div>
+          <input type="text" class="form-control" placeholder="apellido" aria-label="apellido"
+            aria-describedby="basic-addon2" [(ngModel)]="persona.apellido">
+        </div>
+
+      </div>
+
+
+      <div class="card-footer">
+        <button type="button" class="btn btn-outline-primary">Agregar</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
