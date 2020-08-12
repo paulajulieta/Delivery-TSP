@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DeliveryCliente"
+    }
+  },
+  "defaultProject": "DeliveryCliente",
+  "cli": {
+    "analytics": false
+  }
 }
