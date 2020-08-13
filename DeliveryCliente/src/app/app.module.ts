@@ -4,31 +4,27 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeComponent } from './pages/home/home.component';
-import { FormsModule } from '@angular/forms'; 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FooterComponent } from './components/footer/footer.component'; 
-import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { CardComponent } from './components/card/card.component';
-
+import { FooterComponent } from './components/footer/footer.component';
+import { ModalIngresoComponent } from './components/modal-ingreso/modal-ingreso.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ModalRegistroComponent } from './components/modal-registro/modal-registro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
+    CardComponent,
     FooterComponent,
-    CardComponent
+    ModalIngresoComponent,
+    HomeComponent,
+    ModalRegistroComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    NgbModule
+    AppRoutingModule
   ],
-  providers: [
-    NgbCarouselConfig
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
