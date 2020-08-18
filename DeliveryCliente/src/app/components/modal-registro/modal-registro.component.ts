@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-modal-registro',
@@ -11,20 +10,18 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class ModalRegistroComponent implements OnInit {
 
   formularioRegistro:FormGroup
-  constructor(private auth:AngularFireAuth, private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.formularioRegistro=this.fb.group({
-
+      //agregar validaciones de registro
     })
   }
 
-  login() {
-    this.auth.signInWithPopup(new auth.GoogleAuthProvider());
-    //modificar para que no me cree un nuevo usuario sino que valide el existente
+  registroGoogle(){
+    this.authService.loginGoogle();
+    //verificar si ya esta creado, si lo esta redireccionar al login, sino crearlo e inyectarlo en la bd mysql
   }
-  logout() {
-    this.auth.signOut();
-  }
-
+  
+  
 }

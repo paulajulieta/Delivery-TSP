@@ -17,7 +17,7 @@
               </div>
             </div>
             <div class="form-group">
-              <input type="password" class="form-control" id="pass" formControlName="pass" placeholder="Password" (keyUp.enter)="ingresar()">
+              <input type="password" class="form-control" id="pass" formControlName="pass" placeholder="Password" (keyUp.enter)="ingresar(formularioLogin.controls['email'].value, formularioLogin.controls['pass'].value)">
               <div *ngIf="formularioLogin.controls['pass'].invalid && formularioLogin.controls['pass'].dirty" class="alert alert-dismissible alert-primary">
                 <span *ngIf="formularioLogin.controls['pass'].errors.required"><p>El correo es requerido</p></span>
               </div>
@@ -29,8 +29,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" [disabled]="!formularioLogin.valid" class="btn btn-primary btn-lg btn-block" (click)="ingresar()" data-dismiss="modal">Ingresar</button>
-          <button type="button" class="btn btn-primary btn-lg btn-block" (click)="login()" data-dismiss="modal">Ingresar con Google</button><br><br>
+          <button type="button" [disabled]="!formularioLogin.valid" class="btn btn-primary btn-lg btn-block" (click)="ingresar(formularioLogin.controls['email'].value, formularioLogin.controls['pass'].value)" data-dismiss="modal">Ingresar</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" (click)="ingresarGoogle()"><i class="fa fa-google"></i>Ingresar con Google</button><br><br>
           <div style="margin: auto;">
             <label>¿Eres Nuevo? &nbsp;&nbsp;&nbsp;</label>
             <!--  <button type="button" class="btn btn-secondary">Registrarme</button> -->

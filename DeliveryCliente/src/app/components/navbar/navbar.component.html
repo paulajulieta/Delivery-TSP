@@ -8,9 +8,9 @@
       <ul class="navbar-nav ml-auto"  *ngIf="usuario; else showLogin">
         <!-- colocar imagen de perfil y nombre -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle texto" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{usuario.email}}</a>
+          <a class="nav-link dropdown-toggle texto" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{usuario.email}}</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" (click)="logout()" href="/">Salir</a>
+            <a class="dropdown-item" (click)="salir()" href="/">Salir</a>
           </div>
         </li>
       </ul>

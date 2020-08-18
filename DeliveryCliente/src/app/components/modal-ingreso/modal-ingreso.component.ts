@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-modal-ingreso',
@@ -13,7 +14,7 @@ export class ModalIngresoComponent implements OnInit {
   formularioLogin:FormGroup
   datosCorrectos:boolean=true;
   textoError:string='';
-  constructor(private auth:AngularFireAuth, private fb:FormBuilder) { }
+  constructor(private auth:AngularFireAuth, private fb:FormBuilder, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.formularioLogin=this.fb.group({
@@ -24,15 +25,10 @@ export class ModalIngresoComponent implements OnInit {
     })
   }
 
-  login() {
-    this.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  }
-  
-
-  ingresar(){
+  ingresar(email:string, pass:string){
     if(this.formularioLogin.valid){
       this.datosCorrectos=true;
-      this.auth.signInWithEmailAndPassword(this.formularioLogin.value.email, this.formularioLogin.value.pass)
+      this.authService.login(email, pass)
       .then((usuario)=>{
         console.log(usuario);
       }).catch((error)=>{
@@ -43,7 +39,11 @@ export class ModalIngresoComponent implements OnInit {
       this.datosCorrectos=false;
       this.textoError='Correo o contraseña incorrectos!!';
     }
-    
+  }
+
+  
+  ingresarGoogle(){
+    this.authService.loginGoogle();
   }
 
 }
