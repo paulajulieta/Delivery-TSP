@@ -9,6 +9,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ModalIngresoComponent } from './components/modal-ingreso/modal-ingreso.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ModalRegistroComponent } from './components/modal-registro/modal-registro.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { ModalRegistroComponent } from './components/modal-registro/modal-regist
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

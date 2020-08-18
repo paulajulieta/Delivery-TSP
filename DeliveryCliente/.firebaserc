@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "delivery-f76f0": {
+      "hosting": {
+        "DeliveryCliente": [
+          "delivery-f76f0"
+        ]
+      }
+    }
+  }
+}

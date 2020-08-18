@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form [formGroup]="formularioRegistro">
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -81,9 +81,13 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Registrarme</button><br><br>
-          <label for="">¿Ya tienes cuenta?</label>
-          <button type="button" class="btn btn-secondary">Ingresar</button>
+          <button type="button" class="btn btn-primary btn-lg btn-block">Registrarme</button><br><br>
+          <div style="margin: auto;">
+            <label>¿Ya tienes cuenta? &nbsp;&nbsp;&nbsp;</label>
+            <!-- <button type="button" class="btn btn-secondary">Ingresar</button> -->
+            <a href="/" data-toggle="modal" data-target="#modalIngreso" data-dismiss="modal">Ingresar</a>
+          </div>
+          
         </div>
       </div>
     </div>
