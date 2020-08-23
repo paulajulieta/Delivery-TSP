@@ -19,13 +19,12 @@ export class AuthService {
   }
 
   //registro con datos
-  register(usuario:Usuario){
+  register(email:string, pass:string){
     return new Promise((resolve, reject)=>{
-      this.auth.createUserWithEmailAndPassword(usuario.email, usuario.pass)
+      this.auth.createUserWithEmailAndPassword(email, pass)
       .then(userData=>{
         resolve(userData),
         this.updateUserData(userData.user)
-        //agregar el codigo para guardar demás datos en bd mysql
       }).catch(error=>console.log(reject(error)))
     });
   }
@@ -42,7 +41,10 @@ export class AuthService {
   //login con google
   loginGoogle() {
     return this.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    .then(credencial=>this.updateUserData(credencial.user));
+    .then(credencial=>{
+      this.updateUserData(credencial.user);
+      console.log(credencial);
+    });
   }
 
   //recupera el usuario logeado
@@ -61,6 +63,7 @@ export class AuthService {
     } 
 
     return userRef.set(data, { merge: true })
+    
 
   }
   logout() {

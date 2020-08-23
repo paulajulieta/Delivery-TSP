@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,6 +13,7 @@ export class ModalIngresoComponent implements OnInit {
 
   formularioLogin:FormGroup
   datosCorrectos:boolean=true;
+  datosIncorrectos:boolean=true;
   textoError:string='';
   constructor(private auth:AngularFireAuth, private fb:FormBuilder, private authService: AuthService) { }
 
@@ -31,9 +32,11 @@ export class ModalIngresoComponent implements OnInit {
       this.authService.login(email, pass)
       .then((usuario)=>{
         console.log(usuario);
+
       }).catch((error)=>{
         this.datosCorrectos=false;
         this.textoError=error.message;
+        alert("Correo o contraseña incorrecta")
       })
     }else{
       this.datosCorrectos=false;
