@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class ModalRegistroComponent implements OnInit {
 
   formularioRegistro:FormGroup;
-  nuevoUsuario:Usuario;
+  nuevoUsuario:Usuario={};
   emailRegistrado:boolean=false;
   messageError:string="";
   constructor(private fb:FormBuilder, private authService: AuthService, private usuarioService:UsuarioService) { }
@@ -53,16 +53,17 @@ export class ModalRegistroComponent implements OnInit {
   registroGoogle(){
     this.authService.loginGoogle()
     .then((result)=>{
-      this.authService.isAuth().subscribe(res=>{
-        const email=res.email;
-        console.log(res.email);
+      this.authService.isAuth().subscribe(res1=>{
+        const email=res1.email;
+        console.log(res1);
         this.usuarioService.getEmail(email).subscribe((res)=>{
-          console.log("Ya esta registrado", res);
-        }, (err)=>{
-          console.log(res.email);
+          if(res.id!=0){
+            console.log("Ya esta registrado", res);
+          }else{
+            console.log(email);
           //email es undefined ver porque?
           this.nuevoUsuario.email=email;
-          const displayName=res.displayName;
+          const displayName=res1.displayName;
           const dnArray=displayName.split(" ");
           const nombre=dnArray[0];
           const apellido=dnArray[1];
@@ -75,6 +76,7 @@ export class ModalRegistroComponent implements OnInit {
           },(err)=>{
             console.log("Ha ocurrido un error", err);
           })
+          }
         })
       })
     }).catch(err=>console.log(err.message));

@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" [disabled]="!formularioLogin.valid" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" (click)="ingresar(formularioLogin.controls['email'].value, formularioLogin.controls['pass'].value)">Ingresar</button>
+          <button type="button" [disabled]="!formularioLogin.valid" class="btn btn-primary btn-lg btn-block" (click)="ingresar(formularioLogin.controls['email'].value, formularioLogin.controls['pass'].value)">Ingresar</button>
           <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal" (click)="ingresarGoogle()"><i class="fa fa-google"></i>Ingresar con Google</button><br><br>
           <div style="margin: auto;">
             <label>¿Eres Nuevo? &nbsp;&nbsp;&nbsp;</label>

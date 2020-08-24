@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+//import * as $ from 'jquery';
+declare var $ : any;
 
 @Component({
   selector: 'app-modal-ingreso',
@@ -32,11 +34,10 @@ export class ModalIngresoComponent implements OnInit {
       this.authService.login(email, pass)
       .then((usuario)=>{
         console.log(usuario);
-
+        $("#modalIngreso").modal("hide");
       }).catch((error)=>{
         this.datosCorrectos=false;
         this.textoError=error.message;
-        alert("Correo o contraseña incorrecta")
       })
     }else{
       this.datosCorrectos=false;
