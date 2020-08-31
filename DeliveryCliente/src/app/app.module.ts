@@ -14,6 +14,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { BarraIzqComponent } from './components/barra-izq/barra-izq.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { ModalDetallePlatoComponent } from './components/modal-detalle-plato/modal-detalle-plato.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import {HttpClientModule} from '@angular/common/http';
     FooterComponent,
     ModalIngresoComponent,
     HomeComponent,
-    ModalRegistroComponent
+    ModalRegistroComponent,
+    BarraIzqComponent,
+    PerfilComponent,
+    ModalDetallePlatoComponent
   ],
   imports: [
     BrowserModule,

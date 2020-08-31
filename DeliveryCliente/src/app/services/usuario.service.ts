@@ -17,8 +17,8 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.urlServidor);
   }
 
-  getOne(id: number):Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.urlServidor+id);
+  getOne(id: number):Observable<Usuario>{
+    return this.http.get<Usuario>(this.urlServidor+id);
   }
 
   getEmail(email:string):Observable<Usuario>{
@@ -33,8 +33,5 @@ export class UsuarioService {
     return this.http.put<Usuario>(this.urlServidor+id,usuario);
   }
 
-  delete(id:number):Observable<any>{
-    return this.http.delete(this.urlServidor+id);
-  }
 
 }

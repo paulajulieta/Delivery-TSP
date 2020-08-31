@@ -1,3 +1,6 @@
+import { Imagen } from './Imagen';
+import { Domicilio } from './Domicilio';
+
 export interface Usuario{
     id?:number;
     nombre?:string;
@@ -7,4 +10,7 @@ export interface Usuario{
     pass?:string;
     telefono?:string;
     fechaNac?:string;
+    fechaAlta?:string;
+    img?:Imagen;
+    domicilios?:Array<Domicilio>;
 }
