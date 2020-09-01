@@ -5,16 +5,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-6">
-                        <img [src]="plato.img.url" class="img">
+                        <img [src]="plato?.img?.url" class="img">
                     </div>
                     <div class="col-6">
-                        <h4>{{plato.nombre}}</h4><br>
-                        <h5>Categoría: {{plato.categoriaGral.denominacion}}</h5><br>
-                        <h5>$ {{plato.precio}}</h5><br>
-                        <h5>Tiempo estimado: {{plato.tiempoPreparacion}}'</h5><br>
+                        <h4>{{plato?.nombre}}</h4><br>
+                        <h5>Categoría: {{plato?.categoriaGral?.denominacion}}</h5><br>
+                        <h5>$ {{plato?.precio}}</h5><br>
+                        <h5>Tiempo estimado: {{plato?.tiempoPreparacion}}'</h5><br>
                         <h4>Ingredientes: <br>
                             <ul>
-                                <li *ngFor="let detalle of plato.detalles" style="color: black;">{{detalle.insumo.nombre}}</li>
+                                <li *ngFor="let detalle of plato?.detalles" style="color: black;">{{detalle?.insumo?.nombre}}</li>
                             </ul>
                         </h4>
                     </div>

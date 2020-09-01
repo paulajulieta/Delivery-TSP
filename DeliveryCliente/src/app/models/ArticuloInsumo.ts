@@ -1,5 +1,6 @@
 import { UnidadMedida } from './UnidadDeMedida';
 import { Imagen } from './Imagen';
+import { CategoriaGeneral } from './CategoriaGeneral';
 
 export interface ArticuloInsumo{
     id?:number;
@@ -9,4 +10,5 @@ export interface ArticuloInsumo{
     precioVta?:number;
     unidadDeMed?:UnidadMedida;
     img?:Imagen;
+    categoria?:CategoriaGeneral;
 }

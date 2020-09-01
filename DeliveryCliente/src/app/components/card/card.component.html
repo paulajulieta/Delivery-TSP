@@ -1,8 +1,8 @@
 <div class="card border-danger mb-3" style="max-width: 20rem; margin-top: 15px; border-radius: 20px;" *ngIf="mostrarPlato">
-    <img [src]="platoAux.img.url" class="img">
+    <img [src]="platoAux?.img?.url" class="img">
       <div class="card-body">
-        <h4 class="card-title" style="text-align: center;">{{platoAux.nombre}}</h4>
-        <h5 class="card-text" style="text-align: center;">$ {{platoAux.precio}}</h5><br>
+        <h4 class="card-title" style="text-align: center;">{{platoAux?.nombre}}</h4>
+        <h5 class="card-text" style="text-align: center;">$ {{platoAux?.precio}}</h5><br>
         <div class="text-right" >
           <a href="/" class="btn btn-info" data-toggle="modal" data-target="#modalDetallePlato">Ver</a>&nbsp;
           <a href="#" class="btn btn-success">
@@ -15,12 +15,16 @@
         </div>
       </div>
     </div>
+    <div>
+      <app-modal-detalle-plato [idPlato]="idPlato"></app-modal-detalle-plato>
+    </div>
     <div class="card border-danger mb-3" style="max-width: 20rem; margin-top: 15px; border-radius: 20px;" *ngIf="mostrarBebida">
-      <img [src]="bebidaAux.img.url" class="img">
+      <img [src]="bebidaAux?.img?.url" class="img">
         <div class="card-body">
-          <h4 class="card-title" style="text-align: center;">{{bebidaAux.nombre}}</h4>
-          <h5 class="card-text" style="text-align: center;">$ {{bebidaAux.precioVta}}</h5><br>
-          <p class="card-text" style="text-align: center;">{{bebidaAux.descripcion}}</p>
+          <h4 class="card-title" style="text-align: center;">{{bebidaAux?.nombre}}</h4>
+          <h5 class="card-title" style="text-align: center;">{{bebidaAux?.categoria.denominacion}}</h5><br>
+          <h5 class="card-text" style="text-align: center;">$ {{bebidaAux?.precioVta}}</h5><br>
+          <p class="card-text" style="text-align: center;">{{bebidaAux?.descripcion}}</p>
           <div class="text-right" >
             <a href="#" class="btn btn-success">
               <svg width="19" height="18" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +36,5 @@
           </div>
         </div>
       </div>
-      <div>
-        <app-modal-detalle-plato [idPlato]="idPlato"></app-modal-detalle-plato>
-      </div>
+      
       

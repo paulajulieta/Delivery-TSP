@@ -5,12 +5,13 @@
     </button>
   
     <div class="navbar-collapse collapses" id="navbarColor01">
-      <ul class="navbar-nav ml-auto"  *ngIf="usuario; else showLogin">
-        <!-- colocar imagen de perfil y nombre -->
+      <ul class="navbar-nav ml-auto"  *ngIf="usuario && !cargando; else showLogin">
+        
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle texto profile-image" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             <img [src]="usuarioApi.img.url" class="special-img">&nbsp;
-            {{usuarioApi.nombre}} {{usuarioApi.apellido}}</a>
+            {{usuarioApi.nombre}} {{usuarioApi.apellido}}
+          </a>
           
           <div class="dropdown-menu dropdown-menu-lg-right">
             <a class="dropdown-item" href="/perfil">
