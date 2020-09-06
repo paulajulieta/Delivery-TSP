@@ -17,6 +17,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { BarraIzqComponent } from './components/barra-izq/barra-izq.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ModalDetallePlatoComponent } from './components/modal-detalle-plato/modal-detalle-plato.component';
+import { ModalEditarUsuarioComponent } from './components/modal-editar-usuario/modal-editar-usuario.component';
+import { ModalCambiarContrasenaComponent } from './components/modal-cambiar-contrasena/modal-cambiar-contrasena.component';
+import { DomicilioComponent } from './pages/domicilio/domicilio.component';
+import { ModalDomicilioComponent } from './components/modal-domicilio/modal-domicilio.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { ModalCarritoComponent } from './components/modal-carrito/modal-carrito.component';
+import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/modal-detalle-pedido.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +36,14 @@ import { ModalDetallePlatoComponent } from './components/modal-detalle-plato/mod
     ModalRegistroComponent,
     BarraIzqComponent,
     PerfilComponent,
-    ModalDetallePlatoComponent
+    ModalDetallePlatoComponent,
+    ModalEditarUsuarioComponent,
+    ModalCambiarContrasenaComponent,
+    DomicilioComponent,
+    ModalDomicilioComponent,
+    PedidosComponent,
+    ModalCarritoComponent,
+    ModalDetallePedidoComponent
   ],
   imports: [
     BrowserModule,

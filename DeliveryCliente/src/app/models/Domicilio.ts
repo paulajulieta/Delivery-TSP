@@ -1,4 +1,5 @@
 import { Localidad } from './Localidad';
+import { Usuario } from './Usuario';
 
 export interface Domicilio{
     id?:number;
@@ -6,8 +7,8 @@ export interface Domicilio{
     nro?:number;
     piso?:number;
     dpto?:number;
-    CP?:number;
-    latitud?:number;
-    longitud?:number;
+    cp?:number;
     localidad?:Localidad;
+    alias?:string;
+    cliente?:Usuario;
 }

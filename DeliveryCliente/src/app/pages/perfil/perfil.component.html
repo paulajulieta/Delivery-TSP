@@ -1,1 +1,27 @@
-<p>perfil works!</p>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-4">
+            <app-barra-izq></app-barra-izq><br><br>
+        </div>
+        <div class="col-8">
+            <h3>Mis Datos</h3>
+            <hr class="my-4 border-primary" >
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <img [src]="usuarioApi?.img?.url" style="max-width: 200px; min-width: 200px;">
+                    <!-- agregar boton para cargar la foto -->
+                </div>
+                <div class="col-4">
+                    <h2 style="text-align: center;">{{usuarioApi?.nombre}} {{usuarioApi?.apellido}}</h2>
+                    <h4 style="text-align: center;">{{usuarioApi?.email}}</h4>
+                </div>
+            </div><br><br><br>
+            <div style="text-align: right;">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalEditarUsuario">Editar datos</button>&nbsp;&nbsp;
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalCambiarContrasena">Cambiar contraseña</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal-editar-usuario></app-modal-editar-usuario>
+<app-modal-cambiar-contrasena></app-modal-cambiar-contrasena><br><br><br><br>

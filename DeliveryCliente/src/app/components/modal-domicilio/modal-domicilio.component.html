@@ -1,0 +1,85 @@
+<div class="modal" (focus)="traerDatos()" id="modalDomicilio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="idDom===0">Agregar domicilio</h5>
+          <h5 class="modal-title" id="exampleModalLabel" *ngIf="idDom!==0">Editar domicilio</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formularioGuardar">
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="calle" placeholder="Calle*">
+                <div *ngIf="formularioGuardar.controls['calle'].invalid && formularioGuardar.controls['calle'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioGuardar.controls['calle'].errors.required"><p>Campo requerido</p></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="nro" placeholder="Nro*">
+                <div *ngIf="formularioGuardar.controls['nro'].invalid && formularioGuardar.controls['nro'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioGuardar.controls['nro'].errors.required"><p>Campo requerido</p></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="piso" placeholder="Piso*">
+                <div *ngIf="formularioGuardar.controls['piso'].invalid && formularioGuardar.controls['piso'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioGuardar.controls['piso'].errors.required"><p>Campo requerido</p></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" formControlName="dpto" placeholder="Dpto*">
+                <div *ngIf="formularioGuardar.controls['dpto'].invalid && formularioGuardar.controls['dpto'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioGuardar.controls['dpto'].errors.required"><p>Campo requerido</p></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="CP" placeholder="CP*">
+                <div *ngIf="formularioGuardar.controls['CP'].invalid && formularioGuardar.controls['CP'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioGuardar.controls['CP'].errors.required"><p>Campo requerido</p></span>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="localidad">Localidad</label>
+              <select formControlName="localidad" class="custom-select" id="localidad">
+                <option [ngValue]=null disabled [selected]="formularioGuardar.controls['localidad'].value===null">Localidad...</option>
+                <option *ngFor="let localidad of localidades" [ngValue]="localidad" [selected]="localidad.nombre===domicilioLocal?.localidad?.nombre">{{localidad?.nombre}}</option>
+              </select>
+              <div *ngIf="formularioGuardar.controls['localidad'].invalid && formularioGuardar.controls['localidad'].dirty" class="alert alert-dismissible alert-primary">
+                <span *ngIf="formularioGuardar.controls['localidad'].errors.required"><p>Campo requerido</p></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="provincia">Provincias</label>
+              <select formControlName="provincia" class="custom-select" id="provincia">
+                <option [ngValue]=null disabled [selected]="domicilioLocal?.localidad?.provincia===null">Provincia...</option>
+                <option *ngFor="let provincia of provincias" [ngValue]="provincia" [selected]="provincia.nombre===domicilioLocal?.localidad?.provincia?.nombre">{{provincia?.nombre}}</option>
+              </select>
+              <div *ngIf="formularioGuardar.controls['provincia'].invalid && formularioGuardar.controls['provincia'].dirty" class="alert alert-dismissible alert-primary">
+                <span *ngIf="formularioGuardar.controls['provincia'].errors.required"><p>Campo requerido</p></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pais">Paises</label>
+              <select formControlName="pais" class="custom-select" id="pais">
+                <option [ngValue]=null disabled [selected]="domicilioLocal?.localidad?.provincia?.pais===null">País...</option>
+                <option *ngFor="let pais of paises" [ngValue]="pais" [selected]="pais.nombre===domicilioLocal?.localidad?.provincia?.pais?.nombre">{{pais?.nombre}}</option>
+              </select>
+              <div *ngIf="formularioGuardar.controls['pais'].invalid && formularioGuardar.controls['pais'].dirty" class="alert alert-dismissible alert-primary">
+                <span *ngIf="formularioGuardar.controls['pais'].errors.required"><p>Campo requerido</p></span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" [disabled]="!formularioGuardar.valid" (click)="guardar()">Guardar Cambios</button>
+          <button type="button" class="btn btn-primary btn-lg" data-dismiss="modal" >Cancelar</button><br><br>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
