@@ -24,7 +24,7 @@ import { ModalDomicilioComponent } from './components/modal-domicilio/modal-domi
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ModalCarritoComponent } from './components/modal-carrito/modal-carrito.component';
 import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/modal-detalle-pedido.component';
-
+import { HistorialPedidosComponent } from './pages/historial-pedidos/historial-pedidos.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +43,8 @@ import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/m
     ModalDomicilioComponent,
     PedidosComponent,
     ModalCarritoComponent,
-    ModalDetallePedidoComponent
+    ModalDetallePedidoComponent,
+    HistorialPedidosComponent
   ],
   imports: [
     BrowserModule,

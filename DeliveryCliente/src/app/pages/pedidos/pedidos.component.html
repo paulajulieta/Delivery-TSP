@@ -1,16 +1,39 @@
-<div class="container mt-5" >
+<div class="container mt-5">
     <div class="row">
         <div class="col-4">
             <app-barra-izq></app-barra-izq><br><br>
         </div>
         <div class="col-8">
-            <h3>Mis Pedidos</h3>
+            <h3>Mis Pedidos - Pendientes</h3>
             <hr class="my-4 border-primary" >
-            <div class="row" style=" margin-left: 10px;">
-                <!-- tabla con pedidos -->
+            <div class="row pedido mt-5" *ngFor="let pedidoPendiente of pedidosPendientes">
+                <div class="col" >
+                    <div class="row">
+                        <div class="col-3 border-right border-bottom border-primary">
+                            <h4 class="texto mt-1">{{pedidoPendiente?.id}}</h4>
+                        </div>
+                        <div class="col-3 border-right border-bottom border-primary">
+                            <h4 class="texto mt-1">{{pedidoPendiente?.estado}}</h4>
+                        </div>
+                        <div class="col-3 border-right border-bottom border-primary">
+                            <h4 class="texto mt-1">{{pedidoPendiente?.tipoEnvio}}</h4>
+                        </div>
+                        <div class="col-3 border-bottom border-primary">
+                            <h4 class="texto mt-1">{{pedidoPendiente?.horaEstimadaFin}}</h4>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-9" style="margin-left: 20px;">
+                            <h4 class="mt-2">Fecha y hora pedido_Tipo de pago</h4><br>
+                            <p style="font-size: 18px;" *ngFor="let detalle of pedidoPendiente?.detalles">{{detalle?.manufacturado?. nombre}} {{detalle?.insumo?. nombre}}</p>
+                            <p>TOTAL: ${{pedidoPendiente?.total}}</p>
+                        </div>
+                        <div class="col-2"><button class="btn btn-link" style="font-size: 20px;" data-toggle="modal" data-target="#modalDetallePedido" (click)="pedidoId=pedidoPendiente?.id">Ver</button>
+                            
+                    </div>
+                </div>
             </div><br>
-            
         </div>
     </div>
 </div>
-<app-modal-detalle-pedido></app-modal-detalle-pedido>
+<app-modal-detalle-pedido [idPedido]="pedidoId"></app-modal-detalle-pedido></div>

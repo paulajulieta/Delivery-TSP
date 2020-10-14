@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   usuario:User;
   usuarioApi:Usuario;
   cargando:boolean=true;
+  logueado:boolean=false;
   constructor(private authService: AuthService, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
         this.usuarioService.getEmail(this.usuario.email).subscribe((usuarioRes)=>{
           this.usuarioApi=usuarioRes;
           this.cargando=false;
+          this.logueado=true;
           console.log(usuarioRes);
         })
       }

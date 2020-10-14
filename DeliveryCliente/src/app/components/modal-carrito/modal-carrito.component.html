@@ -1,47 +1,114 @@
-<div class="modal" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div (focus)="traerDatos()" class="modal" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Carrito de Compra</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cerrar()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <div>
+            <div class="container">
                 <h5>Pedido</h5>
-                <ul>
-                    <li>
-                        <button>X</button>
-                    </li>
-                </ul>
+                <table class="table table-hover">
+                  <thead>
+                    <tr class="table-primary"> 
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Subtotal</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of carrito?.detallesCarrito">
+                      <td>{{item?.insumo?.nombre}} {{item?.manufacturado?.nombre}}</td>
+                      <td>
+                        <button type="button" class="btn btn-secondary" (click)="aumentarProducto(item)">+</button>
+                        {{item.cantidad}}
+                        <button type="button" class="btn btn-secondary" (click)="disminuirProducto(item)">-</button>
+                      </td>
+                      <td>{{item.subtotal}}</td>
+                      <th><button type="button" class="btn btn-primary btn-sm" (click)="eliminarProducto(item)">X</button></th>
+                    </tr>
+                  </tbody>
+                </table>
             </div>
-            <div>
+            
+              <div class="container">
                 <h5>Entrega</h5>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked="">
+                    <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" [checked]="descuento == false" (change)="quitoDescuento()">
                     <label class="custom-control-label" for="customRadio1">Delivery</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                    <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" [checked]="descuento == true" (change)="aplicoDescuento()">
                     <label class="custom-control-label" for="customRadio2">Retiro en tienda</label>
+                </div><br>
+              </div>
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      
+                        <svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M12.166 8.94C12.696 7.867 13 6.862 13 6A5 5 0 0 0 3 6c0 .862.305 1.867.834 2.94.524 1.062 1.234 2.12 1.96 3.07A31.481 31.481 0 0 0 8 14.58l.208-.22a31.493 31.493 0 0 0 1.998-2.35c.726-.95 1.436-2.008 1.96-3.07zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                          <path fill-rule="evenodd" d="M8 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                        Dirección: 
+                        {{carrito?.domicilioCliente?.calle}} {{carrito?.domicilioCliente?.nro}}<br>
+                        {{carrito?.domicilioCliente?.localidad?.nombre}} {{carrito?.domicilioCliente?.localidad?.provincia?.nombre}}
+                    </div>
+                    <div class="col">
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalSelectDomicilio">Agregar</button>&nbsp;
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalSelectDomicilio">Cambiar</button>
+                    </div>
+                  </div>
+                </div><br><br>
+                <div class="container">
+                    <p>TOTAL: ${{carrito?.total}}</p>
                 </div>
-                <p>hora de entrega</p>
-                <p>dirección <button>Cambiar</button></p>
-                <div>
-                    <p>Subtotal</p>
-                    <p>Recargo/Descuento</p>
-                    <p>TOTAL</p>
-                </div>
-        </div>
+        
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-lg"  data-dismiss="modal" >Continuar</button>
-          <button type="button" class="btn btn-primary btn-lg"  data-dismiss="modal" >Cancelar</button><br><br>
+          <button type="button" class="btn btn-success"  data-dismiss="modal" (click)="confirmarPedido()">Confirmar</button>
+          <button type="button" class="btn btn-primary"  (click)="limpiar()">Limpiar</button>
+          <button type="button" class="btn btn-secondary"  data-dismiss="modal" (click)="cerrar()">Cerrar</button><br><br>
           
         </div>
       </div>
     </div>
   </div>
+
+  <div class="modal" id="modalSelectDomicilio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Carrito de Compra</h5>
+          <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div *ngFor="let domicilio of usuarioApi?.domicilios" class="card border-primary mb-3" style="width: 15rem; margin-top: 15px; border-radius: 20px; margin-right: 15px;">
+                <div class="card-header">DOMICILIO {{domicilio?.id}}</div>
+                <div class="card-body">
+                  <h4 class="card-title" style="text-align: center;">{{domicilio?.calle}} {{domicilio.nro}}</h4>
+                    <h5 class="card-text" style="text-align: center;">{{domicilio?.localidad?.nombre}}</h5><br>
+                    <h5 class="card-text" style="text-align: center;">{{domicilio?.localidad?.provincia?.nombre}}</h5><br>
+                    <h5 class="card-text" style="text-align: center;">{{domicilio?.localidad?.provincia?.pais?.nombre}}</h5><br>
+                    <div class="text-right" >
+                      <a class="btn btn-success" (click)="domSelect(domicilio)">Seleccionar</a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div>
+  </div>
+
+
 
 
 

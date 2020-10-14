@@ -6,16 +6,15 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
-
 @Component({
-  selector: 'app-pedidos',
-  templateUrl: './pedidos.component.html',
-  styleUrls: ['./pedidos.component.scss']
+  selector: 'app-historial-pedidos',
+  templateUrl: './historial-pedidos.component.html',
+  styleUrls: ['./historial-pedidos.component.scss']
 })
-export class PedidosComponent implements OnInit {
+export class HistorialPedidosComponent implements OnInit {
   usuario:User;
   usuarioApi:Usuario;
-  pedidosPendientes:Pedido[];
+  pedidosHistorial:Pedido[];
   pedidoId:number=0;
   constructor(private authService: AuthService, private usuarioService: UsuarioService, private pedidoService : PedidoService) { }
 
@@ -25,16 +24,13 @@ export class PedidosComponent implements OnInit {
         this.usuario=usuario;
         this.usuarioService.getEmail(this.usuario.email).subscribe((usuarioRes)=>{
           this.usuarioApi=usuarioRes;
-          this.pedidoService.getAllByClientePendientes(this.usuarioApi.id).subscribe((pedidoRes)=>{
-            this.pedidosPendientes=pedidoRes;
+          this.pedidoService.getAllByClienteHistorial(this.usuarioApi.id).subscribe((pedidoRes)=>{
+            this.pedidosHistorial=pedidoRes;
             console.log(pedidoRes);
           })
         })
       }
     })
   }
-
-
-  
 
 }

@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { DomicilioComponent } from './pages/domicilio/domicilio.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { HistorialPedidosComponent } from './pages/historial-pedidos/historial-pedidos.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,10 @@ const routes: Routes = [
     path:'domicilio', component:DomicilioComponent
   },
   {
-    path:'pedido', component:PedidosComponent
+    path:'pedidos-pendientes', component:PedidosComponent
+  },
+  {
+    path:'pedidos-historial', component:HistorialPedidosComponent
   }
 ];
 
