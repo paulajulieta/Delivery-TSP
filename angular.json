@@ -30,7 +30,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -94,7 +98,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/pooper.js/dist/js/pooper.min.js"
+            ]
           }
         },
         "lint": {
@@ -121,8 +129,16 @@
               "devServerTarget": "DeliveryAdministrador:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "DeliveryAdministrador"
+    }
+  },
+  "defaultProject": "DeliveryAdministrador",
+  "cli": {
+    "analytics": false
+  }
 }

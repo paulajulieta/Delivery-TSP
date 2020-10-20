@@ -1,0 +1,38 @@
+<div class="modal fade" id="modalIngreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" >Ingreso</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formularioLogin">
+            <div class="form-group">
+              <input type="text" class="form-control" id="email" formControlName="email" placeholder="Email">
+              <div *ngIf="formularioLogin.controls['email'].invalid && formularioLogin.controls['email'].dirty" class="alert alert-dismissible alert-primary">
+                <span *ngIf="formularioLogin.controls['email'].errors.required"><p>El correo es requerido</p></span>
+                <span *ngIf="formularioLogin.controls['email'].errors.email"><p>El correo no es válido</p></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="pass" formControlName="pass" placeholder="Password" (keyUp.enter)="ingresar(formularioLogin.controls['email'].value, formularioLogin.controls['pass'].value)">
+              <div *ngIf="formularioLogin.controls['pass'].invalid && formularioLogin.controls['pass'].dirty" class="alert alert-dismissible alert-primary">
+                <span *ngIf="formularioLogin.controls['pass'].errors.required"><p>El correo es requerido</p></span>
+              </div>
+            </div>
+          </form>
+          <div class="alert alert-dismissible alert-danger" *ngIf="!datosCorrectos">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p style="font-size: 16px;">{{textoError}}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" [disabled]="!formularioLogin.valid" class="btn btn-primary btn-lg btn-block" (click)="ingresar(formularioLogin.controls['email'].value, formularioLogin.controls['pass'].value)">Ingresar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+

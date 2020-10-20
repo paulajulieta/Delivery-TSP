@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "deliveryadmin-22f27": {
+      "hosting": {
+        "DeliveryAdministrador": [
+          "deliveryadmin-22f27"
+        ]
+      }
+    }
+  }
+}
