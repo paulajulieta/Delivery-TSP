@@ -25,6 +25,7 @@ import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ModalCarritoComponent } from './components/modal-carrito/modal-carrito.component';
 import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/modal-detalle-pedido.component';
 import { HistorialPedidosComponent } from './pages/historial-pedidos/historial-pedidos.component';
+import { ModalFacturaComponent } from './components/modal-factura/modal-factura.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +45,8 @@ import { HistorialPedidosComponent } from './pages/historial-pedidos/historial-p
     PedidosComponent,
     ModalCarritoComponent,
     ModalDetallePedidoComponent,
-    HistorialPedidosComponent
+    HistorialPedidosComponent,
+    ModalFacturaComponent
   ],
   imports: [
     BrowserModule,

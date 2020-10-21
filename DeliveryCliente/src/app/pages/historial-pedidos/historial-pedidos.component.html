@@ -29,7 +29,7 @@
                     </div>
                     <div class="row" >
                         <div class="col-12">
-                            <h4 class="texto mt-1">Ver factura</h4>
+                            <h4 class="texto mt-1"><button class="btn btn-link" style="font-size: 18px;" data-toggle="modal" data-target="#modalFactura" (click)="pedidoId=pedidoHistorial?.id">Ver factura</button></h4>
                         </div>
                     </div>
                 </div>
@@ -38,3 +38,4 @@
     </div>
 </div>
 <app-modal-detalle-pedido  [idPedido]="pedidoId"></app-modal-detalle-pedido>
+<app-modal-factura [pedidoId]="pedidoId"></app-modal-factura>

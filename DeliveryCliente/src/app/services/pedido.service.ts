@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from '../models/Pedido';
 import { PedidoDetalle } from '../models/PedidoDetalle';
+import { Factura } from '../models/Factura';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class PedidoService {
 
   urlServidor1:string='http://localhost:9001/api/v1/pedido/';
   urlServidor2:string='http://localhost:9001/api/v1/detallePedido/';
+  urlServidor3:string='http://localhost:9001/api/v1/factura/'
 
   //métodos bd PEDIDO
 
@@ -66,4 +68,16 @@ export class PedidoService {
     return this.http.delete<PedidoDetalle>(this.urlServidor2+id);
   }
 
+  //métodos bd FACTURA 
+  getAllFactura():Observable<Factura[]>{
+    return this.http.get<Factura[]>(this.urlServidor3);
+  }
+
+  getOneFactura(id:number):Observable<Factura>{
+    return this.http.get<Factura>(this.urlServidor3+id);
+  }
+
+  getOneFacturaByPedido(idPedido:number):Observable<Factura>{
+    return this.http.get<Factura>(this.urlServidor3+'byPedido/'+idPedido);
+  }
 }
