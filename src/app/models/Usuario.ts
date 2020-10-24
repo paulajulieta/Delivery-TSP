@@ -1,6 +1,8 @@
 /* import { Imagen } from './Imagen';
 import { Domicilio } from './Domicilio'; */
 
+import { Rol } from './Rol';
+
 export interface Usuario{
     id?:number;
     nombre?:string;
@@ -11,6 +13,7 @@ export interface Usuario{
     telefono?:string;
     fechaNac?:string;
     fechaAlta?:string;
+    rol?:Rol;
     /* img?:Imagen;
     domicilios?:Array<Domicilio>; */
 }

@@ -14,6 +14,9 @@ export class NavbarComponent implements OnInit {
   usuarioApi:Usuario;
   cargando:boolean=true;
   logueado:boolean=false;
+  esAdmin:boolean=false;
+  esCocinero:boolean=false;
+  esCajero:boolean=false;
   constructor(private authService: AuthService, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
@@ -24,6 +27,13 @@ export class NavbarComponent implements OnInit {
           this.usuarioApi=usuarioRes;
           this.cargando=false;
           this.logueado=true;
+          if(this.usuarioApi.rol.nombre==="administrador"){
+            this.esAdmin=true;
+          }else if(this.usuarioApi.rol.nombre==="cajero"){
+            this.esCajero=true;
+          }else if(this.usuarioApi.rol.nombre==="cocinero"){
+            this.esCocinero=true;
+          }
           console.log(usuarioRes);
         })
       }

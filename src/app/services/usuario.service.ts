@@ -8,7 +8,7 @@ import { Usuario } from '../models/Usuario';
 })
 export class UsuarioService {
 
-  urlServidor='http://localhost:9001/api/v1/cliente/';
+  urlServidor='http://localhost:9001/api/v1/empleado/';
   constructor(private http:HttpClient) { }
 
   //métodos para inyectar/consultar en bd mysql
@@ -32,6 +32,5 @@ export class UsuarioService {
   put(usuario:Usuario, id:number):Observable<Usuario>{
     return this.http.put<Usuario>(this.urlServidor+id,usuario);
   }
-
 
 }
