@@ -1,0 +1,167 @@
+<div  class="modal" (focus)=traerDatos() id="modalInsumo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="titulo">Insumo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formularioInsumo">
+            <div class="form-group" hidden>
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">ID</label>
+                    <input type="text" class="form-control" formControlName="id" placeholder="" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        Nombre
+                      </span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre*">
+                    
+                  </div>
+                  <div *ngIf="formularioInsumo.controls['nombre'].invalid && formularioInsumo.controls['nombre'].dirty" class="alert alert-dismissible alert-primary">
+                    <span *ngIf="formularioInsumo.controls['nombre'].errors.required">Campo requerido</span>
+                  </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend"> 
+                    <span class="input-group-text">
+                        Descripción
+                    </span>
+                    <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripción Artículo*">
+                    
+                </div>
+                <div *ngIf="formularioInsumo.controls['descripcion'].invalid && formularioInsumo.controls['descripcion'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['descripcion'].errors.required">Campo requerido</span>
+                </div>
+              
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend" >
+                    <span class="input-group-text">
+                        Precio Compra
+                    </span>
+                    <input type="number" class="form-control" formControlName="precioCompra" placeholder="Precio Compra*">
+                    
+                </div>
+                <div *ngIf="formularioInsumo.controls['precioCompra'].invalid && formularioInsumo.controls['precioCompra'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['precioCompra'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend" >
+                    <span class="input-group-text">
+                        Precio Venta
+                    </span>
+                    <input type="number" class="form-control" formControlName="precioVta" placeholder="Precio Venta*">
+                </div>
+                <div *ngIf="formularioInsumo.controls['precioVta'].invalid && formularioInsumo.controls['precioVta'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['precioVta'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend" >
+                    <span class="input-group-text">
+                        Stock Actual
+                    </span>
+                    <input type="number" class="form-control" formControlName="stockActual" placeholder="Stock Actual*">
+                </div>
+                <div *ngIf="formularioInsumo.controls['stockActual'].invalid && formularioInsumo.controls['stockActual'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['stockActual'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        Stock Mínimo
+                    </span>
+                    <input type="number" class="form-control" formControlName="stockMin" placeholder="Stock Mínimo*">
+                </div>
+                <div *ngIf="formularioInsumo.controls['stockMin'].invalid && formularioInsumo.controls['stockMin'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['stockMin'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                        Stock Máximo
+                    </span>
+                    <input type="number" class="form-control" formControlName="stockMax" placeholder="Stock Máximo*">
+                </div>
+                <div *ngIf="formularioInsumo.controls['stockMax'].invalid && formularioInsumo.controls['stockMax'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['stockMax'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                       Es Insumo
+                    </span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="esInsumo" formControlName="esInsumo" id="esInsumosi" [value]="true">
+                        <label class="form-check-label" for="exampleRadios1">
+                          Si
+                        </label>
+                    </div>&nbsp; &nbsp; &nbsp;
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="esInsumo" formControlName="esInsumo" id="esInsumono" [value]="false">
+                        <label class="form-check-label" for="exampleRadios2">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <div *ngIf="formularioInsumo.controls['esInsumo'].invalid && formularioInsumo.controls['esInsumo'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['esInsumo'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <div class="input-group-prepend" >
+                    <label class="input-group-text" for="inputGroupSelect01">Unidad de Medida</label>
+                    <select class="custom-select form-control" formControlName="unidadDeMed">
+                      <option [value]=null disabled [selected]="insumo?.unidadDeMed===null">Seleccione una unidad de medida</option>
+                      <option *ngFor="let unidad of unidadesMed" [value]="unidad.id" [selected]="unidad.nombre===insumo?.unidadDeMed?.nombre" >{{unidad?.nombre}}</option>
+                    </select>
+                </div>
+                <div *ngIf="formularioInsumo.controls['unidadDeMed'].invalid && formularioInsumo.controls['unidadDeMed'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['unidadDeMed'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Categoría</label>
+                    <select class="custom-select" formControlName="categoria">
+                      <option [value]=null disabled [selected]="insumo?.categoria===null">Seleccione una categoría</option>
+                      <option *ngFor="let categoria of categorias" [value]="categoria.id" [selected]="categoria.id===insumo?.categoria?.id" >{{categoria?.denominacion}}</option>
+                    </select>
+                </div>
+                <div *ngIf="formularioInsumo.controls['categoria'].invalid && formularioInsumo.controls['categoria'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['categoria'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">
+                       Imagen
+                    </span>
+                    <input type="text" class="form-control" formControlName="img" placeholder="Imagen URL*">
+                </div>
+                <div *ngIf="formularioInsumo.controls['img'].invalid && formularioInsumo.controls['img'].dirty" class="alert alert-dismissible alert-primary">
+                  <span *ngIf="formularioInsumo.controls['img'].errors.required">Campo requerido</span>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success"  data-dismiss="modal" [disabled]="!formularioInsumo.valid" (click)=save()>Guardar</button>
+          <button type="button" class="btn btn-primary"  data-dismiss="modal" >Cancelar</button><br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+

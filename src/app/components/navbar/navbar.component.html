@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand titulo" href="/">EL BUEN SABOR</a>
+    <a class="navbar-brand titulo" [routerLink]="'home'">EL BUEN SABOR</a>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,13 +18,13 @@
             Administración
           </a>
           <div class="dropdown-menu dropdown-menu-lg-right" >
-            <a class="dropdown-item" href="/">
+            <a class="dropdown-item" [routerLink]="'usuarios'">
               Usuarios</a>
             <a class="dropdown-item" href="/">
               Facturas</a>
             <a class="dropdown-item" href="/">
               Pedidos</a>
-            <a class="dropdown-item" href="/">
+            <a class="dropdown-item" [routerLink]="'abm-insumos'">
               ABM Insumos</a>
             <a class="dropdown-item" href="/">
               ABM Manufacturados</a>
