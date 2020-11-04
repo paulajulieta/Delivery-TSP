@@ -16,6 +16,9 @@ import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuar
 import { ModalAbmUsuarioComponent } from './components/modal-abm-usuario/modal-abm-usuario.component';
 import { AbmInsumosComponent } from './pages/abm-insumos/abm-insumos.component';
 import { ModalAbmInsumoComponent } from './components/modal-abm-insumo/modal-abm-insumo.component';
+import { AbmManufacturadosComponent } from './pages/abm-manufacturados/abm-manufacturados.component';
+import { ModalAbmManufacturadosComponent } from './components/modal-abm-manufacturados/modal-abm-manufacturados.component';
+import { ModalAbmDetalleManufacturadosComponent } from './components/modal-abm-detalle-manufacturados/modal-abm-detalle-manufacturados.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { ModalAbmInsumoComponent } from './components/modal-abm-insumo/modal-abm
     GestionUsuariosComponent,
     ModalAbmUsuarioComponent,
     AbmInsumosComponent,
-    ModalAbmInsumoComponent
+    ModalAbmInsumoComponent,
+    AbmManufacturadosComponent,
+    ModalAbmManufacturadosComponent,
+    ModalAbmDetalleManufacturadosComponent
   ],
   imports: [
     BrowserModule,
