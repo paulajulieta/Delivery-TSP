@@ -1,0 +1,54 @@
+<div (focus)="this.traerDetalle()" class="modal border-primary" id="modalDetallePedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detalle del Pedido</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="margin-left: 20px;">
+            <div class="container">
+              <div>
+                <h5><u>Pedido</u></h5>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">Nombre</div>
+                        <div class="col-3">Cantidad</div>
+                        <div class="col-3">Precio</div>
+                        <div class="col-3">Subtotal</div>
+                      </div>
+                  <div class="row" *ngFor="let item of pedido?.detalles">
+                    <div class="col-3">{{item?.insumo?.nombre}} {{item?.manufacturado?.nombre}}</div>
+                    <div class="col-3" style="text-align: center;">{{item?.cantidad}}</div>
+                    <div class="col-3">$ {{item?.insumo?.precioVta}} {{item?.manufacturado?.precio}}</div>
+                    <div class="col-3">$ {{item?.subtotal}}</div>
+                  </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border: 0,8px solid gray;">
+            <div>
+                <p>Subtotal: ${{subtotal}}</p>
+                <p>Descuento: ${{pedido?.montoDescuento}}</p>
+                <p>Total: ${{pedido?.total}}</p>
+            </div><br><br>
+            <div>
+                <h5><u>Detalle de entrega</u></h5>
+                <p>Domicilio: {{pedido?.domicilioCliente?.calle}} {{pedido?.domicilioCliente?.nro}} {{pedido?.domicilioCliente?.localidad?.nombre}}</p>
+                <p>Tipo de Envío: {{pedido?.tipoEnvio}}</p>
+                <p>Hora de entrega: {{pedido?.horaEstimadaFin}}</p>
+            </div><br><br>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg"  data-dismiss="modal" (click)=cerrar()>Cerrar</button><br><br>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+

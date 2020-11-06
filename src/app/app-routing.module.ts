@@ -4,6 +4,7 @@ import { AbmInsumosComponent } from './pages/abm-insumos/abm-insumos.component';
 import { AbmManufacturadosComponent } from './pages/abm-manufacturados/abm-manufacturados.component';
 import { GestionUsuariosComponent } from './pages/gestion-usuarios/gestion-usuarios.component';
 import { HomeComponent } from './pages/home/home.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path:'home', component:HomeComponent },
   { path:'usuarios', component:GestionUsuariosComponent },
   { path:'abm-insumos', component:AbmInsumosComponent },
-  { path:'abm-manufacturados', component:AbmManufacturadosComponent }
+  { path:'abm-manufacturados', component:AbmManufacturadosComponent },
+  { path:'pedidos', component:PedidosComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,82 @@
+<div (focus)="this.traerDetalle()" class="modal" id="modalFactura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="container">
+              <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Factura</h5>
+            </div>
+        </div>
+        <div class="modal-body">
+          <div class="container" id="facturaPdf">
+            <h2 style="text-align: center;">EL BUEN SABOR</h2>
+          <h1 style="text-align: center;">B</h1>
+          <div class="row">
+            <div class="col-6">
+                <label>Nro de Factura</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" value="{{factura?.id}}" disabled>
+                </div>
+            </div>
+            <div class="col-6">
+              <label>Fecha de Facturación</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" value="{{factura?.fecha}}" disabled>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+              <div class="col-6">
+                  <label>Cliente</label>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" value="{{factura?.cliente?.nombre}} {{factura?.cliente?.apellido}}" disabled>
+                  </div>
+              </div>
+              <div class="col-6">
+                <label>Domicilio</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" value="{{factura?.pedido?.domicilioCliente?.calle}} {{factura?.pedido?.domicilioCliente?.nro}}" disabled>
+                </div>
+              </div>
+          </div>
+          <hr>
+          <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" colspan="4">DETALLES</th>
+                </tr>
+              <tr>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio Unitario</th>
+                <th scope="col">Importe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let detalle of factura?.detalles">
+                <td>{{detalle?.cantidad}}</td>
+                <td>{{detalle?.insumo?.nombre}} {{detalle?.manufacturado?.nombre}}</td>
+                <td style="text-align: right;">$ {{detalle?.insumo?.precioVta}} {{detalle?.manufacturado?.precio}}</td>
+                <td style="text-align: right;">$ {{detalle?.subtotal}}</td>
+              </tr>
+              <tr>
+                <td></td><td></td>
+                <th>Descuento: </th>
+                <th style="text-align: right;">$ {{factura?.montoDescuento}}</th>
+            </tr>
+              <tr>
+                  <td></td><td></td>
+                  <th>Total: </th>
+                  <th style="text-align: right;">$ {{factura?.total}}</th>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        <div class="text-right">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+        </div>    
+      </div>
+    </div>
+  </div>
+

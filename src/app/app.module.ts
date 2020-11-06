@@ -19,6 +19,9 @@ import { ModalAbmInsumoComponent } from './components/modal-abm-insumo/modal-abm
 import { AbmManufacturadosComponent } from './pages/abm-manufacturados/abm-manufacturados.component';
 import { ModalAbmManufacturadosComponent } from './components/modal-abm-manufacturados/modal-abm-manufacturados.component';
 import { ModalAbmDetalleManufacturadosComponent } from './components/modal-abm-detalle-manufacturados/modal-abm-detalle-manufacturados.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/modal-detalle-pedido.component';
+import { ModalFacturaComponent } from './components/modal-factura/modal-factura.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,10 @@ import { ModalAbmDetalleManufacturadosComponent } from './components/modal-abm-d
     ModalAbmInsumoComponent,
     AbmManufacturadosComponent,
     ModalAbmManufacturadosComponent,
-    ModalAbmDetalleManufacturadosComponent
+    ModalAbmDetalleManufacturadosComponent,
+    PedidosComponent,
+    ModalDetallePedidoComponent,
+    ModalFacturaComponent
   ],
   imports: [
     BrowserModule,
