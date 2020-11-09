@@ -20,8 +20,6 @@
           <div class="dropdown-menu dropdown-menu-lg-right" >
             <a class="dropdown-item" [routerLink]="'usuarios'">
               Usuarios</a>
-            <a class="dropdown-item" href="/">
-              Facturas</a>
             <a class="dropdown-item" [routerLink]="'pedidos'">
               Pedidos</a>
             <a class="dropdown-item" [routerLink]="'abm-insumos'">
@@ -44,7 +42,7 @@
               Pedidos por período</a>
             <a class="dropdown-item" href="/">
               Pedidos por cliente</a>
-            <a class="dropdown-item" href="/">
+            <a class="dropdown-item" [routerLink]="'stock'">
               Control de stock</a>
           </div>
         </li>
@@ -53,7 +51,7 @@
           </a>
         </li>
         <li class="nav-item" *ngIf="esCocinero">
-          <a class="nav-link texto" routerLink="cocina"> ABM Platos
+          <a class="nav-link texto" [routerLink]="'abm-manufacturados'"> ABM Platos
           </a>
         </li>
         <li class="nav-item" *ngIf="esCajero">

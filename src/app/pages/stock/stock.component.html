@@ -1,0 +1,35 @@
+<div class=" container-fluid mt-5" style="width: 1600px;">
+    <h2>STOCK</h2>
+    <hr class="border-primary">
+    <div style="width: 35%; position: relative;"><input type="text" class="form-control" (input)="buscarInsumo($event)" placeholder="Buscar..."></div>
+    <div class="table-responsive-md">
+      <table class="table mt-3">
+        <thead class="thead table-primary">
+          <tr>
+            <th scope="col" style="width: 200px; text-align: center;">N°</th>
+            <th scope="col" style="width: 200px; text-align: center;">Nombre</th>
+            <th scope="col" style="width: 200px; text-align: center;">Mínimo</th>
+            <th scope="col" style="width: 200px; text-align: center;">Actual</th>
+            <th scope="col" style="width: 200px; text-align: center;">Máximo</th>
+            <th scope="col" style="width: 200px; text-align: center;">Nivel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let articulo of articulos" class="table-active">
+            
+            <td scope="row" style="text-align: center;">{{articulo?.id}}</td>
+            <td style="text-align: center;">{{articulo?.nombre}}</td>
+            <td style="text-align: center;">{{articulo?.stockMin}}</td>
+            <td style="text-align: center;">{{articulo?.stockActual}}</td>
+            <td style="text-align: center;">{{articulo?.stockMax}}</td>
+            <td style="text-align: center; background: lawngreen;" *ngIf="articulo?.stockActual/articulo?.stockMax>=0.66">Nivel Alto</td>
+            <td style="text-align: center; background: yellow;" *ngIf="articulo?.stockActual/articulo?.stockMax>0.33 && articulo?.stockActual/articulo?.stockMax<0.66" >Nivel Medio</td>
+            <td style="text-align: center; background: red;" *ngIf="articulo?.stockActual/articulo?.stockMax<=0.33">Nivel Bajo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+

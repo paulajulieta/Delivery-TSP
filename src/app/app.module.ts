@@ -22,6 +22,8 @@ import { ModalAbmDetalleManufacturadosComponent } from './components/modal-abm-d
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/modal-detalle-pedido.component';
 import { ModalFacturaComponent } from './components/modal-factura/modal-factura.component';
+import { StockComponent } from './pages/stock/stock.component';
+import { ComidasMasPedidasComponent } from './pages/comidas-mas-pedidas/comidas-mas-pedidas.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ModalFacturaComponent } from './components/modal-factura/modal-factura.
     ModalAbmDetalleManufacturadosComponent,
     PedidosComponent,
     ModalDetallePedidoComponent,
-    ModalFacturaComponent
+    ModalFacturaComponent,
+    StockComponent,
+    ComidasMasPedidasComponent
   ],
   imports: [
     BrowserModule,
