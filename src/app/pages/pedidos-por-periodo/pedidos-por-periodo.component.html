@@ -1,25 +1,23 @@
 <div class="container-fluid mt-5" style="width: 1200px;">
-    <h2>PEDIDOS POR CLIENTE</h2>
+    <h2>PEDIDOS POR MES/DÍA</h2>
     <hr class="border-primary">
     <div class="row">
         <div class="col-5">
-            <select class="form-control" name="usuarios" [(ngModel)]="userSeleccionado">
-                <option *ngFor="let usuario of usuarios" value={{usuario.id}}  >{{usuario.nombre}} {{usuario.apellido}}</option>
-            </select>
+          <input type="date" class="form-control" [(ngModel)]="fechaFiltroInicio" name="fechaI">
         </div>
         <div class="col-5">
-            <input type="date" class="form-control" [(ngModel)]="fechaFiltro" name="fecha">
+            <input type="date" class="form-control" [(ngModel)]="fechaFiltroFin" name="fechaF">
         </div>
         <div class="col-2" style="text-align: right;">
-          <button class="btn btn-info" (click)="filtrar(userSeleccionado, fechaFiltro)"><i class="fa fa-search"></i>Buscar</button>
+          <button class="btn btn-info" (click)="filtrarDia(fechaFiltroInicio, fechaFiltroFin)">Buscar</button>
         </div>
     </div>
     <div class="row">
         <div class="col mt-5" style="text-align: center;">
-          <h5 class="card-title">Pedidos por usuario y periodo</h5>
-          <h6>Total de pedidos del usuario:  {{totalPedidos}}</h6>
+          <h5 class="card-title">Pedidos por periodo de tiempo</h5>
+          <h6>Total de pedidos:  {{totalPedidos}}</h6>
           <div style="background: white">
-            <p-chart *ngIf="cargo" type="doughnut" [data]="datosEstadisticos"></p-chart>
+            <p-chart *ngIf="cargo" type="pie" [data]="datosEstadisticos"></p-chart>
           </div>
         </div>
     </div>
@@ -50,3 +48,4 @@
       </div>
 </div>
 <app-modal-factura [pedidoId]="pedidoId"></app-modal-factura>
+

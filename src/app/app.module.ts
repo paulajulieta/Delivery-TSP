@@ -27,6 +27,8 @@ import { StockComponent } from './pages/stock/stock.component';
 import { ComidasMasPedidasComponent } from './pages/comidas-mas-pedidas/comidas-mas-pedidas.component';
 import {ChartModule} from 'primeng/chart';
 import { PedidosPorClienteComponent } from './pages/pedidos-por-cliente/pedidos-por-cliente.component';
+import { PedidosPorPeriodoComponent } from './pages/pedidos-por-periodo/pedidos-por-periodo.component';
+import { RecaudacionesComponent } from './pages/recaudaciones/recaudaciones.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { PedidosPorClienteComponent } from './pages/pedidos-por-cliente/pedidos-
     ModalFacturaComponent,
     StockComponent,
     ComidasMasPedidasComponent,
-    PedidosPorClienteComponent
+    PedidosPorClienteComponent,
+    PedidosPorPeriodoComponent,
+    RecaudacionesComponent
   ],
   imports: [
     BrowserModule,
