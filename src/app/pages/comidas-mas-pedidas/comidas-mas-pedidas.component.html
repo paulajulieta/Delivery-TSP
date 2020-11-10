@@ -1,1 +1,9 @@
-<p>comidas-mas-pedidas works!</p>
+<div class="container-fluid mt-5" style="width: 1200px;">
+    <h2>COMIDAS MÁS PEDIDAS</h2>
+    <hr class="border-primary">
+    <div class="row">
+        <div class="col">
+            <p-chart *ngIf="cargo" type="pie" [data]="datosEstadisticos"></p-chart>
+        </div>
+    </div>
+</div>

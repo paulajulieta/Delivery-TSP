@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +25,8 @@ import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/m
 import { ModalFacturaComponent } from './components/modal-factura/modal-factura.component';
 import { StockComponent } from './pages/stock/stock.component';
 import { ComidasMasPedidasComponent } from './pages/comidas-mas-pedidas/comidas-mas-pedidas.component';
+import {ChartModule} from 'primeng/chart';
+import { PedidosPorClienteComponent } from './pages/pedidos-por-cliente/pedidos-por-cliente.component';
 
 @NgModule({
   declarations: [
@@ -43,16 +46,19 @@ import { ComidasMasPedidasComponent } from './pages/comidas-mas-pedidas/comidas-
     ModalDetallePedidoComponent,
     ModalFacturaComponent,
     StockComponent,
-    ComidasMasPedidasComponent
+    ComidasMasPedidasComponent,
+    PedidosPorClienteComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
