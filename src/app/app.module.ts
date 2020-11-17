@@ -29,6 +29,9 @@ import {ChartModule} from 'primeng/chart';
 import { PedidosPorClienteComponent } from './pages/pedidos-por-cliente/pedidos-por-cliente.component';
 import { PedidosPorPeriodoComponent } from './pages/pedidos-por-periodo/pedidos-por-periodo.component';
 import { RecaudacionesComponent } from './pages/recaudaciones/recaudaciones.component';
+import { PantallaCajeroComponent } from './pages/pantalla-cajero/pantalla-cajero.component';
+import { PedidosFacturadosComponent } from './pages/pedidos-facturados/pedidos-facturados.component';
+import { PantallaCocineroComponent } from './pages/pantalla-cocinero/pantalla-cocinero.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,10 @@ import { RecaudacionesComponent } from './pages/recaudaciones/recaudaciones.comp
     ComidasMasPedidasComponent,
     PedidosPorClienteComponent,
     PedidosPorPeriodoComponent,
-    RecaudacionesComponent
+    RecaudacionesComponent,
+    PantallaCajeroComponent,
+    PedidosFacturadosComponent,
+    PantallaCocineroComponent
   ],
   imports: [
     BrowserModule,

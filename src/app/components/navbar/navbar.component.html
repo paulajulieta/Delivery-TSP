@@ -47,7 +47,7 @@
           </div>
         </li>
         <li class="nav-item" *ngIf="esCocinero">
-          <a class="nav-link texto" routerLink="cocina"> Cocina
+          <a class="nav-link texto" [routerLink]="'pedidos-cocinero'"> Cocina
           </a>
         </li>
         <li class="nav-item" *ngIf="esCocinero">
@@ -55,11 +55,11 @@
           </a>
         </li>
         <li class="nav-item" *ngIf="esCajero">
-          <a class="nav-link texto" routerLink="cocina"> Caja
+          <a class="nav-link texto" [routerLink]="'pedidos-cajero'"> Caja
           </a>
         </li>
         <li class="nav-item" *ngIf="esCajero">
-          <a class="nav-link texto" routerLink="cocina"> Facturas
+          <a class="nav-link texto" [routerLink]="'facturas-cajero'"> Facturas
           </a>
         </li>
         <li class="nav-item">

@@ -14,12 +14,12 @@ export class AuthGuardPageGuard implements CanActivate {
   constructor(private authService: AngularFireAuth , private router: Router, private auth:AuthService) {
    }
   canActivate(): boolean {
-    console.log(this.auth.isAuth)
-     if (this.auth.isAuth !=null) {
+     if (this.authService.currentUser) {
        console.log('Authorizado , Logeado')
        return true;
        } else {
        console.log('No estas Autorizado ,Debes logear')
+       this.router.navigate(['home'])
        $("#modalIngreso").modal('show');
        return false;
      }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Factura } from '../models/Factura';
 import { Pedido } from '../models/Pedido';
 import { PedidoDetalle } from '../models/PedidoDetalle';
@@ -12,9 +12,14 @@ export class PedidoService {
 
   constructor(private http:HttpClient) { }
 
+  
+
   urlServidor1:string='http://localhost:9001/api/v1/pedido/';
   urlServidor2:string='http://localhost:9001/api/v1/detallePedido/';
   urlServidor3:string='http://localhost:9001/api/v1/factura/'
+
+  
+
 
   //métodos bd PEDIDO
 
@@ -40,6 +45,10 @@ export class PedidoService {
 
   putPedido(pedido:Pedido, id:number):Observable<Pedido>{
     return this.http.put<Pedido>(this.urlServidor1+id, pedido);
+  }
+
+  putEstadoPedido(pedido:Pedido, id:number, estado:string):Observable<Pedido>{
+    return this.http.put<Pedido>(this.urlServidor1+id+"/"+estado, pedido);
   }
 
   deletePedido(id:number):Observable<Pedido>{
@@ -79,5 +88,13 @@ export class PedidoService {
 
   getOneFacturaByPedido(idPedido:number):Observable<Factura>{
     return this.http.get<Factura>(this.urlServidor3+'byPedido/'+idPedido);
+  }
+
+  putFactura(factura:Factura, id:number):Observable<Factura>{
+    return this.http.put<Factura>(this.urlServidor3+id, factura);
+  }
+
+  postEnviarFacturaByEmail(factura:Factura):Observable<string>{
+    return this.http.post<string>("http://localhost:9001/api/v1/configuracion/sendMail", factura);
   }
 }

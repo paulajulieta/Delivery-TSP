@@ -73,10 +73,57 @@
           </table>
           </div>
         <div class="text-right">
+          <button type="button" class="btn btn-success" *ngIf="tipoEnvio==='Retiro en local'" data-toggle="modal" data-target="#modalAgregar">Agregar</button> &nbsp;
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
         </div>    
       </div>
     </div>
+  </div>
+
+  <div>
+    <div  class="modal" id="modalAgregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="titulo">Agregar Detalles</h5>
+            </div>
+            <div class="modal-body">
+              <form >
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Insumos</label>
+                        <select class="custom-select"  id="selectInsumo" [(ngModel)]="insumo" name="ins">
+                          <option value="null" selected>Seleccione una bebida</option>
+                          <option *ngFor="let insumo of insumos" [value]="insumo.id">{{insumo?.nombre}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Platos</label>
+                      <select class="custom-select"  id="selectPlato" [(ngModel)]="plato" name="pla">
+                        <option value="null" selected>Seleccione un plato</option>
+                        <option *ngFor="let plato of manufacturados" [value]="plato.id">{{plato?.nombre}}</option>
+                      </select>
+                  </div>
+              </div>
+                <div class="form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                           Cantidad
+                        </span>
+                        <input type="number" class="form-control" placeholder="Cantidad" [(ngModel)]="cantidad" name="cant">
+                    </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success"  (click)="guardar()" >Agregar</button>
+              <button type="button" class="btn btn-primary"  (click)="cerrar()" >Cancelar</button><br><br>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 

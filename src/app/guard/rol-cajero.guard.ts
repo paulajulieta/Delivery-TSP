@@ -31,7 +31,7 @@ export class RolCajeroGuard implements CanActivate {
   }
 
   verificar(){
-    if(this.usuario.rol.nombre==='Cajero'){
+    if(this.usuario.rol.nombre==='cajero'){
       this.estado=true;
     }else{
       this.router.navigate(['home']);
