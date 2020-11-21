@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Pedido } from 'src/app/models/Pedido';
 import { PedidoDetalle } from 'src/app/models/PedidoDetalle';
 import { PedidoService } from 'src/app/services/pedido.service';
+declare var $:any;
 
 @Component({
   selector: 'app-modal-detalle-pedido',
@@ -11,6 +12,7 @@ import { PedidoService } from 'src/app/services/pedido.service';
 export class ModalDetallePedidoComponent implements OnInit {
 
   @Input() idPedido:number;
+  @Input() rol:string;
   pedido:Pedido={}
   detalle:PedidoDetalle={}
   subtotal:number;
@@ -30,7 +32,19 @@ export class ModalDetallePedidoComponent implements OnInit {
   }
 
   cerrar(){
-    this.pedido={},
-    this.idPedido=0;
+    this.pedido={};
+  }
+
+  aceptarPedido(pedido:Pedido){
+    pedido.estado='En cocina';
+    this.pedidoService.putPedido(pedido, pedido.id).subscribe((res)=>{
+      console.log(res);
+    })
+  }
+  rechazarPedido(pedido:Pedido){
+    pedido.estado='Rechazado';
+    this.pedidoService.putPedido(pedido, pedido.id).subscribe((res)=>{
+      $("#modalDetallePedido").modal('hide');
+    })
   }
 }

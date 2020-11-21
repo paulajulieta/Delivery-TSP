@@ -1,48 +1,114 @@
 <div (focus)="this.traerDetalle()" class="modal border-primary" id="modalDetallePedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered" *ngIf="rol==='caja'">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Detalle del Pedido</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Pedido N° {{pedido?.id}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" style="margin-left: 20px;">
-            <div class="container">
-              <div>
-                <h5><u>Pedido</u></h5>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-3">Nombre</div>
-                        <div class="col-3">Cantidad</div>
-                        <div class="col-3">Precio</div>
-                        <div class="col-3">Subtotal</div>
-                      </div>
-                  <div class="row" *ngFor="let item of pedido?.detalles">
-                    <div class="col-3">{{item?.insumo?.nombre}} {{item?.manufacturado?.nombre}}</div>
-                    <div class="col-3" style="text-align: center;">{{item?.cantidad}}</div>
-                    <div class="col-3">$ {{item?.insumo?.precioVta}} {{item?.manufacturado?.precio}}</div>
-                    <div class="col-3">$ {{item?.subtotal}}</div>
+                <div class="container pedido">
+                  <div class="row">
+                    <div class="col border-bottom border-primary" aria-colspan="3" style="font-size: 16px;">Cliente:</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4 mt-1" style="font-size: 16px;">{{pedido?.cliente?.nombre}} {{pedido?.cliente?.apellido}}</div>
+                    <div class="col-4 mt-1" style="font-size: 16px;">{{pedido?.cliente?.email}}</div>
+                    <div class="col-4 mt-1" style="font-size: 16px;">{{pedido?.cliente?.telefono}}</div>
                   </div>
                 </div>
-            </div>
-            <hr class="my-4" style="border: 0,8px solid gray;">
-            <div>
-                <p>Subtotal: ${{subtotal}}</p>
-                <p>Descuento: ${{pedido?.montoDescuento}}</p>
-                <p>Total: ${{pedido?.total}}</p>
-            </div><br><br>
-            <div>
-                <h5><u>Detalle de entrega</u></h5>
-                <p>Domicilio: {{pedido?.domicilioCliente?.calle}} {{pedido?.domicilioCliente?.nro}} {{pedido?.domicilioCliente?.localidad?.nombre}}</p>
-                <p>Tipo de Envío: {{pedido?.tipoEnvio}}</p>
-                <p>Hora de entrega: {{pedido?.horaEstimadaFin}}</p>
-            </div><br><br>
-            </div>
-        </div>
+                <div class="container pedido mt-5">
+                  <div class="row">
+                    <div class="col mt-1 border-bottom border-primary" style="font-size: 16px;">Retiro/Envío del pedido: {{pedido?.tipoEnvio}}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col mt-1" style="font-size: 16px;">Dirección: {{pedido?.domicilioCliente?.calle}} {{pedido?.domicilioCliente?.nro}} {{pedido?.domicilioCliente?.localidad?.nombre}}</div>
+                  </div>
+                </div>
+                <div class="container pedido mt-5">
+                  <div class="row ">
+                    <div class="col mt-1 border-bottom border-primary" aria-colspan="4" style="font-size: 16px;">Detalle del pedido</div>
+                  </div>
+                  <div class="row" *ngFor="let item of pedido?.detalles">
+                    <div class="col-5 mt-1" style="font-size: 16px;">{{item?.insumo?.nombre}} {{item?.manufacturado?.nombre}}</div>
+                    <div class="col-1 mt-1" style="text-align: center; font-size: 16px;">{{item?.cantidad}}</div>
+                    <div class="col-3 mt-1" style="font-size: 16px;">$ {{item?.insumo?.precioVta}} {{item?.manufacturado?.precio}}</div>
+                    <div class="col-3 mt-1" style="font-size: 16px;">$ {{item?.subtotal}}</div>
+                  </div>
+                </div>
+                <div class="container pedido mt-5">
+                  <div class="row">
+                    <div class="col-4 mt-1 border-bottom border-primary" style="font-size: 16px;">Estado del pedido</div>
+                    <div class="col mt-1 border-bottom border-primary" style="font-size: 16px;">Fecha</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4 mt-1" style="font-size: 16px;">{{pedido?.estado}}</div>
+                    <div class="col mt-1" style="font-size: 16px;">{{pedido?.fecha}}</div>
+                  </div>
+                  <div class="row" *ngIf="pedido?.estado==='Pendiente'">
+                    <div class="col mt-2 mb-2" style="text-align: right;"><button class="btn btn-success btn-sm" (click)="aceptarPedido(pedido)">Aceptar</button></div>
+                    <div class="col mt-2 mb-2"><button class="btn btn-danger btn-sm" (click)="rechazarPedido(pedido)">Rechazar</button></div>
+                  </div>
+                </div>
+                <div class="container pedido mt-5">
+                  <div class="row">
+                    <div class="col mt-1 border-bottom border-primary" style="font-size: 16px;">Medio de Pago</div>
+                    <div class="col mt-1 border-bottom border-primary" style="font-size: 16px;">Monto</div>
+                    <div class="col mt-1 border-bottom border-primary" style="font-size: 16px;">Fecha</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-4 mt-1" style="font-size: 16px;">{{pedido?.formaPago}}</div>
+                    <div class="col-3 mt-1" style="font-size: 16px;">${{pedido?.total}}</div>
+                    <div class="col-5 mt-1" style="font-size: 16px;">{{pedido?.fecha}}</div>
+                  </div>
+                  <!-- <div>
+                    <p>Subtotal: ${{subtotal}}</p>
+                    <p>Descuento: ${{pedido?.montoDescuento}}</p>
+                    <p>Total: </p>
+                  </div><br><br>
+                  <div>
+                    <h5><u>Detalle de entrega</u></h5>
+                    <p>Domicilio: {{pedido?.domicilioCliente?.calle}} {{pedido?.domicilioCliente?.nro}} {{pedido?.domicilioCliente?.localidad?.nombre}}</p>
+                    <p>Tipo de Envío: {{pedido?.tipoEnvio}}</p>
+                    <p>Hora de entrega: {{pedido?.horaEstimadaFin}}</p>
+                  </div><br><br> -->
+                </div>
+            <!-- <hr class="my-4" style="border: 0,8px solid gray;"> -->
+            
+          </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-primary btn-lg"  data-dismiss="modal" (click)=cerrar()>Cerrar</button><br><br>
-          
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-dialog modal-dialog-centered" *ngIf="rol==='cocina'">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Pedido N° {{pedido?.id}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="margin-left: 20px;">
+          <h4>Detalles</h4>
+          <div class="container pedido mt-5">
+            <div class="row ">
+              <div class="col mt-1 border-bottom border-primary"  style="font-size: 16px;">Plato</div>
+              <div class="col mt-1 border-bottom border-primary"  style="font-size: 16px;">Cantidad</div>
+
+            </div>
+            <div class="row" *ngFor="let item of pedido?.detalles">
+              <div class="col mt-1" style="font-size: 16px;">{{item?.insumo?.nombre}} {{item?.manufacturado?.nombre}}</div>
+              <div class="col mt-1" style="font-size: 16px;">{{item?.cantidad}}</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg"  data-dismiss="modal" (click)=cerrar()>Cerrar</button><br><br>
         </div>
       </div>
     </div>

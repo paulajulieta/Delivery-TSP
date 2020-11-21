@@ -27,6 +27,18 @@ export class PantallaCocineroComponent implements OnInit {
       })
     })
 
+    setInterval(()=>{
+      this.pedidoService.getAllPedido().subscribe((pedidosApi)=>{
+        this.pedidos=pedidosApi;
+        this.pedidosCocinero=this.pedidos.filter((ped)=>{
+          if(ped.estado==='Demorado'){
+            return ped;
+          }else if(ped.estado==='En cocina'){
+            return ped;
+          }
+        })
+      })
+    }, 5000)
     
   }
 
