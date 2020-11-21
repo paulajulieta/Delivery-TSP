@@ -8,6 +8,7 @@ export interface Carrito{
     tipoEnvio?:string;
     montoDescuento?:number;
     total?:number;
+    formaPago?:string;
     detallesCarrito?:CarritoDetalle[];
     cliente?:Usuario;
     domicilioCliente?:Domicilio;

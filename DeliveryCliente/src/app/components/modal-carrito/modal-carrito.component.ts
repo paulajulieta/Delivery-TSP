@@ -29,6 +29,7 @@ export class ModalCarritoComponent implements OnInit {
   detallePedido:PedidoDetalle={};
   tiempoPedido:number=0;
   tiempoDelivery:number=0;
+  mensaje:string='';
   constructor(private carritoService:CarritoService, private authService:AuthService, private usuarioService:UsuarioService, private pedidoService:PedidoService) { }
 
   ngOnInit(): void {
@@ -42,7 +43,10 @@ export class ModalCarritoComponent implements OnInit {
         this.usuarioService.getEmail(this.usuario.email).subscribe((usuarioRes)=>{
           this.usuarioApi=usuarioRes;
           this.carritoService.getOneByCliente(this.usuarioApi.id).subscribe((carritoRes)=>{
-            this.carrito=carritoRes;
+            if(carritoRes.id===0){
+              this.mensaje="Su carrito está vacío";
+            }else{
+              this.carrito=carritoRes;
             if(this.carrito.montoDescuento!=0){
               this.descuento=true;
               this.totalConDescuento=this.carrito.total;
@@ -57,6 +61,7 @@ export class ModalCarritoComponent implements OnInit {
                   this.tiempoPedido+=Number(Number(detalle.manufacturado.tiempoPreparacion));
                 }
               }
+            }
             }
           })
         })
@@ -147,6 +152,11 @@ export class ModalCarritoComponent implements OnInit {
       console.log(this.carrito.total);
     }
     
+  }
+
+  formaPago(event){
+    this.carrito.formaPago=event.target.value;
+    console.log(this.carrito)
   }
 
   limpiar(){

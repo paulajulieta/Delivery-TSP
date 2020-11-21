@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Factura } from 'src/app/models/Factura';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { jsPDF } from "jspdf";
@@ -27,7 +27,7 @@ export class ModalFacturaComponent implements OnInit {
   }
 
   descargarFactura(){
-    var data=document.getElementById('factura');
+    var data=document.getElementById('facturaPdf');
     html2canvas(data).then(canvas=>{
       var imgWidth = 208;
       var pageHeight = 295;
@@ -35,11 +35,31 @@ export class ModalFacturaComponent implements OnInit {
       var heightLeft = imgHeight;
 
       const contentDataURL = canvas.toDataURL('image/png')
-      let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+      let pdf = new jsPDF(); // A4 size page of PDF
       var position = 0;
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.addImage(contentDataURL, 1, 15, imgWidth, imgHeight)
       pdf.save('factura_'+this.factura.id+'_'+this.factura.fecha+'.pdf'); // Generated PDF
     });
+
+    /* const data=document.getElementById('factura');
+    const doc=new jsPDF('p', 'mm', 'a4');
+    const options={
+      background:'white',
+      scale:3
+    };
+
+    html2canvas(data, options).then((canvas)=>{
+      const img=canvas.toDataURL('image/png');
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight);
+      return doc;
+    }).then((docResult) => {
+      docResult.save('factura_'+this.factura.id+'_'+this.factura.fecha+'.pdf');
+    }); */
     
   }
 }

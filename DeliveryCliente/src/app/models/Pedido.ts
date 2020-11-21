@@ -10,6 +10,7 @@ export interface Pedido{
     tipoEnvio?:string;
     montoDescuento?:number;
     total?:number;
+    formaPago?:string;
     estado?:string;
     cliente?:Usuario;
     detalles?:Array<PedidoDetalle>;
