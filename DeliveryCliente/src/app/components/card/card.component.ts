@@ -29,17 +29,20 @@ export class CardComponent implements OnInit {
   carrito:Carrito={};
   detallesCarrito:Array<CarritoDetalle>=new Array<CarritoDetalle>();
   detalleCarrito:CarritoDetalle={};
+  platoId:number;
+  platoDetalle:Plato={};
   constructor(private usuarioService:UsuarioService, private authService:AuthService, private carritoService:CarritoService) { }
 
   ngOnInit(): void {
     if(this.platoAux!=null){
       this.mostrarPlato=true;
       console.log(this.platoAux)
+      
     }else if(this.bebidaAux!=null){
       this.mostrarBebida=true;
       console.log(this.bebidaAux)
     }
-
+    
     this.authService.isAuth().subscribe((usuario)=>{
       if(usuario!=null){
         this.usuario=usuario;
@@ -205,4 +208,16 @@ export class CardComponent implements OnInit {
     }
 }
 
+  mostrarDetalle(plato:Plato){
+    console.log(this.platoAux)
+    
+    this.platoDetalle=plato;
+    console.log(this.platoDetalle)
+    $("#modalDetallePlato").modal("show");
+  }
+
+  traerDetalle(){
+    this.platoDetalle=this.platoAux;
+    console.log(this.platoDetalle)
+  }
 }

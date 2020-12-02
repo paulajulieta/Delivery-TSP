@@ -8,6 +8,9 @@ export interface ArticuloInsumo{
     descripcion?:string;
     esInsumo?:boolean;
     precioVta?:number;
+    stockActual?:number,
+    stockMin?:number,
+    stockMax?:number,
     unidadDeMed?:UnidadMedida;
     img?:Imagen;
     categoria?:CategoriaGeneral;

@@ -32,6 +32,21 @@ export class PedidosComponent implements OnInit {
         })
       }
     })
+
+    setInterval(() => {
+      this.authService.isAuth().subscribe((usuario)=>{
+        if(usuario!=null){
+          this.usuario=usuario;
+          this.usuarioService.getEmail(this.usuario.email).subscribe((usuarioRes)=>{
+            this.usuarioApi=usuarioRes;
+            this.pedidoService.getAllByClientePendientes(this.usuarioApi.id).subscribe((pedidoRes)=>{
+              this.pedidosPendientes=pedidoRes;
+              console.log(pedidoRes);
+            })
+          })
+        }
+      })
+    }, 10000);
   }
 
 

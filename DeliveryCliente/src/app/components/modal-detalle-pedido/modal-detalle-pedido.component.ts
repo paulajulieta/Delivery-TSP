@@ -33,7 +33,6 @@ export class ModalDetallePedidoComponent implements OnInit {
     })
   }
   cerrar(){
-    this.pedido={},
-    this.idPedido=0;
+    this.pedido={};
   }
 }

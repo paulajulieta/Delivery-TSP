@@ -24,7 +24,7 @@
                     </div>
                     <div class="row align-items-center">
                         <div class="col-9" style="margin-left: 20px;">
-                            <h4 class="mt-2">Fecha y hora pedido_Tipo de pago</h4><br>
+                            <h4 class="mt-2">{{pedidoPendiente?.fecha}}&nbsp;&nbsp;{{pedidoPendiente?.formaPago}}</h4><br>
                             <p style="font-size: 18px;" *ngFor="let detalle of pedidoPendiente?.detalles">{{detalle?.manufacturado?. nombre}} {{detalle?.insumo?. nombre}}</p>
                             <p>TOTAL: ${{pedidoPendiente?.total}}</p>
                         </div>

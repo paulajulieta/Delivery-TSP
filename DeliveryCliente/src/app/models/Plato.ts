@@ -10,4 +10,5 @@ export interface Plato{
     img?:Imagen;
     categoriaGral?:CategoriaGeneral;
     detalles?:DetalleManufacturado[];
+    sinStock?:boolean;
 }

@@ -21,7 +21,7 @@
                     </div>
                     <div class="row align-items-center border-bottom border-primary">
                         <div class="col-9" style="margin-left: 20px;">
-                            <h4 class="mt-2">Fecha y hora entrega_Tipo de pago</h4><br>
+                            <h4 class="mt-2">{{pedidoHistorial?.horaEstimadaFin}}&nbsp;&nbsp;{{pedidoHistorial?.formaPago}}&nbsp;&nbsp;<span style="color: red;" *ngIf="pedidoHistorial.estado==='Rechazado'">{{pedidoHistorial?.estado}}</span></h4><br>
                             <p style="font-size: 18px;" *ngFor="let detalle of pedidoHistorial?.detalles">{{detalle?.manufacturado?. nombre}} {{detalle?.insumo?. nombre}}</p>
                             <p>TOTAL: ${{pedidoHistorial?.total}}</p>
                         </div>

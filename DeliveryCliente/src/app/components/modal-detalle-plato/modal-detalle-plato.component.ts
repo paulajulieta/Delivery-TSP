@@ -12,27 +12,22 @@ export class ModalDetallePlatoComponent implements OnInit {
 
   constructor(private platoService: PlatoService) { }
 
-  @Input() idPlato:number;
+  
+  @Input() platoAux:Plato
   plato:Plato;
   detalle:DetalleManufacturado[]=[];
   datos:DetalleManufacturado[]=[];
   ngOnInit(): void {
-    
   }
 
   traerDetalle(){
-    console.log('id plato '+this.idPlato)
-    this.platoService.getOnePlato(this.idPlato).subscribe((platoApi)=>{
-      this.plato=platoApi as Plato;
-      console.log(this.plato);
-    })
-
-    this.platoService.getAllDetalle().subscribe((detalleApi)=>{
-      this.datos=detalleApi;
-      this.detalle=this.datos.filter(detalle=>detalle.manufacturado.id===this.idPlato);
-      this.plato.detalles=this.detalle;
-      console.log(this.plato.detalles);
-    })
+    
+    console.log(this.platoAux)
+    
   }
+
+  cerrar(){
+    this.plato={};
+  }  
 
 }
