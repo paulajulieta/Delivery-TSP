@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pedido } from 'src/app/models/Pedido';
+import { Pedido, PedidoRecaudaciones } from 'src/app/models/Pedido';
+import { ExcelService } from 'src/app/services/excel.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 
 export interface Mes{
@@ -77,7 +78,9 @@ export class RecaudacionesComponent implements OnInit {
   pedidoId:number;
   totalPedidos:number=0;
   totalRecaudado:number=0;
-  constructor(private pedidoService:PedidoService) { }
+  mostrar:boolean=false;
+  pedidosPorDia:PedidoRecaudaciones[]=[];
+  constructor(private pedidoService:PedidoService, private excelService:ExcelService) { }
 
   ngOnInit(): void {
   }
@@ -110,7 +113,10 @@ export class RecaudacionesComponent implements OnInit {
         }
       }
       this.data.push(this.totalPedidos);
+      console.log(this.pedidosFiltrados)
       this.introducirDatosEstadisticos();
+      this.mostrar=true;
+      this.fechaFiltro=null;
     }, 2000);
   }
 
@@ -146,6 +152,8 @@ export class RecaudacionesComponent implements OnInit {
       this.data.push(this.totalPedidos);
       this.colorArray.push(this.getRandomColor());
       this.introducirDatosEstadisticos();
+      this.mostrar=false;
+      this.mesSeleccionado=null;
     }, 2000);
   }
 
@@ -168,6 +176,45 @@ export class RecaudacionesComponent implements OnInit {
         }
       ]
     };
+  }
+
+  exportarExcel(){
+     var nroPed=0;
+    for(let pedido of this.pedidosFiltrados){
+      var fechaPedido=pedido.fecha.split('/');
+      var fecha2=fechaPedido[2].split(' ');
+      if(this.pedidosPorDia.length===0){
+        var pedidoPD:PedidoRecaudaciones={}
+        pedidoPD.Nro=nroPed+1;
+        pedidoPD.Fecha=fechaPedido[0]+'/'+fechaPedido[1]+'/'+fecha2[0];
+        pedidoPD.Cantidad_Pedidos=1;
+        pedidoPD.Total=pedido.total;
+        this.pedidosPorDia.push(pedidoPD);
+        nroPed++;
+      }else{
+        for(var i:number=0; i<this.pedidosPorDia.length; i++){
+          
+          var fechaPedidoPD=this.pedidosPorDia[i].Fecha.split('/');
+          if(fechaPedido[0]===fechaPedidoPD[0]){
+            this.pedidosPorDia[i].Cantidad_Pedidos++;
+            this.pedidosPorDia[i].Total+=pedido.total;
+            break;
+          }else if(i===(this.pedidosPorDia.length-1)){
+            var pedidoPD:PedidoRecaudaciones={}
+            pedidoPD.Nro=nroPed+1;
+            pedidoPD.Fecha=fechaPedido[0]+'/'+fechaPedido[1]+'/'+fecha2[0];
+            pedidoPD.Cantidad_Pedidos=1;
+            pedidoPD.Total=pedido.total;
+            this.pedidosPorDia.push(pedidoPD);
+            nroPed++
+            break;
+          }
+        }
+      }
+    }
+    var nombreArchivo="Recaudaciones Mes: "+this.mesSeleccionado+'_'+'Total: '+this.totalRecaudado+ ' pesos';
+    this.excelService.exportAsExcelFile(this.pedidosPorDia, nombreArchivo);
+    console.log(this.pedidosPorDia)
   }
 
 }

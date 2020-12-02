@@ -22,18 +22,18 @@ import { StockComponent } from './pages/stock/stock.component';
 const routes: Routes = [
   { path:'', component:HomeComponent },
   { path:'home', component:HomeComponent },
-  { path:'usuarios', component:GestionUsuariosComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard] },
-  { path:'abm-insumos', component:AbmInsumosComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard] },
-  { path:'abm-manufacturados', component:AbmManufacturadosComponent, canActivate:[AuthGuardPageGuard] },
-  { path:'pedidos', component:PedidosComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard] },
-  { path:'stock', component:StockComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard] },
-  { path:'comidas-mas-pedidas', component:ComidasMasPedidasComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard]},
-  { path:'pedidos-por-cliente', component:PedidosPorClienteComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard]},
-  { path:'pedidos-por-periodo', component:PedidosPorPeriodoComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard]},
-  { path:'recaudaciones', component:RecaudacionesComponent, canActivate:[AuthGuardPageGuard, RolAdminGuard]},
-  { path:'pedidos-cajero', component:PantallaCajeroComponent, canActivate:[AuthGuardPageGuard,RolCajeroGuard]},
-  { path:'facturas-cajero', component:PedidosFacturadosComponent, canActivate:[AuthGuardPageGuard,RolCajeroGuard]},
-  { path:'pedidos-cocinero', component:PantallaCocineroComponent, canActivate:[AuthGuardPageGuard,RolCocineroGuard]}
+  { path:'usuarios', component:GestionUsuariosComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard]  */},
+  { path:'abm-insumos', component:AbmInsumosComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard]  */},
+  { path:'abm-manufacturados', component:AbmManufacturadosComponent/* , canActivate:[AuthGuardPageGuard]  */},
+  { path:'pedidos', component:PedidosComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard]  */},
+  { path:'stock', component:StockComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard] */ },
+  { path:'comidas-mas-pedidas', component:ComidasMasPedidasComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard] */},
+  { path:'pedidos-por-cliente', component:PedidosPorClienteComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard] */},
+  { path:'pedidos-por-periodo', component:PedidosPorPeriodoComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard] */},
+  { path:'recaudaciones', component:RecaudacionesComponent/* , canActivate:[AuthGuardPageGuard, RolAdminGuard] */},
+  { path:'pedidos-cajero', component:PantallaCajeroComponent/* , canActivate:[AuthGuardPageGuard,RolCajeroGuard] */},
+  { path:'facturas-cajero', component:PedidosFacturadosComponent/* , canActivate:[AuthGuardPageGuard,RolCajeroGuard] */},
+  { path:'pedidos-cocinero', component:PantallaCocineroComponent/* , canActivate:[AuthGuardPageGuard,RolCocineroGuard] */}
 ];
 
 @NgModule({

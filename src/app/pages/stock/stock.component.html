@@ -2,6 +2,7 @@
     <h2>STOCK</h2>
     <hr class="border-primary">
     <div style="width: 35%; position: relative;"><input type="text" class="form-control" (input)="buscarInsumo($event)" placeholder="Buscar..."></div>
+    <div class="text-right"><button class="btn btn-info" (click)="exportarExcel()">Exportar a EXCEL</button></div>
     <div class="table-responsive-md">
       <table class="table mt-3">
         <thead class="thead table-primary">

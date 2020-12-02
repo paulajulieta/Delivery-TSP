@@ -16,3 +16,10 @@ export interface Pedido{
     detalles?:Array<PedidoDetalle>;
     domicilioCliente?:Domicilio;
 }
+
+export interface PedidoRecaudaciones{
+    Nro?:number;
+    Fecha?:string;
+    Total?:number;
+    Cantidad_Pedidos?:number;
+}

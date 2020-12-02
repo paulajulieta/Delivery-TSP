@@ -19,7 +19,6 @@ import { AbmInsumosComponent } from './pages/abm-insumos/abm-insumos.component';
 import { ModalAbmInsumoComponent } from './components/modal-abm-insumo/modal-abm-insumo.component';
 import { AbmManufacturadosComponent } from './pages/abm-manufacturados/abm-manufacturados.component';
 import { ModalAbmManufacturadosComponent } from './components/modal-abm-manufacturados/modal-abm-manufacturados.component';
-import { ModalAbmDetalleManufacturadosComponent } from './components/modal-abm-detalle-manufacturados/modal-abm-detalle-manufacturados.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ModalDetallePedidoComponent } from './components/modal-detalle-pedido/modal-detalle-pedido.component';
 import { ModalFacturaComponent } from './components/modal-factura/modal-factura.component';
@@ -46,7 +45,6 @@ import { PantallaCocineroComponent } from './pages/pantalla-cocinero/pantalla-co
     ModalAbmInsumoComponent,
     AbmManufacturadosComponent,
     ModalAbmManufacturadosComponent,
-    ModalAbmDetalleManufacturadosComponent,
     PedidosComponent,
     ModalDetallePedidoComponent,
     ModalFacturaComponent,

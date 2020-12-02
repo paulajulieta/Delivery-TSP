@@ -1,5 +1,5 @@
 <div (focus)="this.traerDetalle()" class="modal border-primary" id="modalDetallePedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" *ngIf="rol==='caja'">
+    <div class="modal-dialog modal-dialog-centered" *ngIf="rol==='caja' || rol==='admin'">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Pedido N° {{pedido?.id}}</h5>

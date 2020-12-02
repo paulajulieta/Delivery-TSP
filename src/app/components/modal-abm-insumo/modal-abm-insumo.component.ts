@@ -5,6 +5,7 @@ import { CategoriaGeneral } from 'src/app/models/CategoriaGeneral';
 import { Imagen } from 'src/app/models/Imagen';
 import { UnidadMedida } from 'src/app/models/UnidadDeMedida';
 import { ArticulosService } from 'src/app/services/articulos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modal-abm-insumo',
@@ -103,6 +104,12 @@ export class ModalAbmInsumoComponent implements OnInit {
       }
       
       this.insumoService.postInsumo(this.insumoNuevo).subscribe((res)=>{
+        Swal.fire({
+          icon: 'success',
+          title: 'Se agregó correctamente',
+          showConfirmButton: false,
+          timer: 1000
+        })
         window.location.reload();
       })
     }else{
@@ -126,13 +133,26 @@ export class ModalAbmInsumoComponent implements OnInit {
           this.insumoNuevo.unidadDeMed=uniMed;
         }
       }
-      if(this.insumo.img.url===this.formularioInsumo.controls['img'].value){
-        this.insumoNuevo.img=this.insumo.img;
+      if(this.insumo.img!=null){
+        if(this.insumo.img.url===this.formularioInsumo.controls['img'].value){
+          this.insumoNuevo.img=this.insumo.img;
+        }else{
+          this.imgNueva.url=this.formularioInsumo.controls['img'].value;
+          this.insumoNuevo.img=this.imgNueva;
+        }
       }else{
-        this.imgNueva.url=this.formularioInsumo.controls['img'].value;
-        this.insumoNuevo.img=this.imgNueva;
+        if(this.formularioInsumo.controls['img'].value!=null){
+          this.imgNueva.url=this.formularioInsumo.controls['img'].value;
+          this.insumoNuevo.img=this.imgNueva;
+        }
       }
       this.insumoService.putInsumo(this.insumoNuevo, this.insumoNuevo.id).subscribe((res)=>{
+        Swal.fire({
+          icon: 'success',
+          title: 'Se modificó correctamente',
+          showConfirmButton: false,
+          timer: 1000
+        })
         window.location.reload();
       })
     }

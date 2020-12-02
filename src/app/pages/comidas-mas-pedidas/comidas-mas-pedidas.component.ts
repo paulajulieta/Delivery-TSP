@@ -54,9 +54,20 @@ export class ComidasMasPedidasComponent implements OnInit {
                 dato.cantidad=detalle.cantidad;
                 this.datos.push(dato);
               }else{
-                var i=1;
-                var cont=this.datos.length;
-                for(let dato2 of this.datos){
+                for(var i:number=0; i<this.datos.length; i++){
+                  if(this.datos[i].id===plato.id){
+                    this.datos[i].cantidad+=detalle.cantidad;
+                    break;
+                  }else if(i===(this.datos.length-1)){
+                    var dato:ComidaMasPedida={};
+                    dato.id=plato.id;
+                    dato.plato=plato;
+                    dato.cantidad=detalle.cantidad;
+                    this.datos.push(dato);
+                    break;
+                  }
+                }
+                /* for(let dato2 of this.datos){
                   if(dato2.id===plato.id){
                     dato2.cantidad+=detalle.cantidad;
                     i++;
@@ -69,7 +80,7 @@ export class ComidasMasPedidasComponent implements OnInit {
                     this.datos.push(dato);
                     break;
                   }
-                }
+                } */
               }
             }
           }

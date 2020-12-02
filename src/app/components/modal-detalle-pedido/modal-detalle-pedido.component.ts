@@ -40,6 +40,7 @@ export class ModalDetallePedidoComponent implements OnInit {
     this.pedidoService.putPedido(pedido, pedido.id).subscribe((res)=>{
       console.log(res);
     })
+    $("#modalDetallePedido").modal('hide');
   }
   rechazarPedido(pedido:Pedido){
     pedido.estado='Rechazado';

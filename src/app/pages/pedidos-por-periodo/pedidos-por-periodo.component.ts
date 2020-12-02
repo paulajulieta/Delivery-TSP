@@ -32,9 +32,11 @@ export class PedidosPorPeriodoComponent implements OnInit {
   constructor(private pedidoService:PedidoService) { }
 
   ngOnInit(): void {
+    
   }
 
   filtrarDia(fechaInicio:Date, fechaFin:Date){
+    console.log(this.pedidos)
     this.totalPedidos=0;
     this.pedidos=[];
     this.pedidosFiltrados=[];
@@ -48,21 +50,23 @@ export class PedidosPorPeriodoComponent implements OnInit {
     this.pedidosEnLocal=[];
     var fechaI:string=fechaInicio.toString();
     let arrayStringI=fechaI.split('-');
-    fechaI=arrayStringI[2]+'/'+arrayStringI[1]+'/'+arrayStringI[0]
+    fechaI=arrayStringI[1]+'/'+arrayStringI[2]+'/'+arrayStringI[0]+' 00:01:00'
     var fechaF:string=fechaFin.toString();
     let arrayStringF=fechaF.split('-');
-    fechaF=arrayStringF[2]+'/'+arrayStringF[1]+'/'+arrayStringF[0]
+    fechaF=arrayStringF[1]+'/'+arrayStringF[2]+'/'+arrayStringF[0]+' 23:59:00'
+    
+    var fechaIni=new Date(fechaI);
+    var fechaFi=new Date(fechaF);
     this.pedidoService.getAllPedido().subscribe((pedidosApi)=>{
       this.pedidos=pedidosApi;
     })
-    console.log(fechaI)
-    console.log(fechaF)
     setTimeout(() => {
       for(const pedido of this.pedidos){
         let arrayString=pedido.fecha.split('/');
-        let arrayString2=arrayString[2].split(' ');
-        let fechaFixeada=(arrayString[0]+'/'+arrayString[1]+'/'+arrayString2[0]);
-        if(fechaFixeada>=fechaI && fechaFixeada<=fechaF){
+        let fechaFixeada=(arrayString[1]+'/'+arrayString[0]+'/'+arrayString[2]);
+        const fechaPedido=new Date(fechaFixeada);
+        console.log(fechaFixeada)
+        if(fechaPedido>=fechaIni && fechaPedido<=fechaFi){
           this.pedidosFiltrados.push(pedido);
           this.totalPedidos+=1;
         }
@@ -82,8 +86,13 @@ export class PedidosPorPeriodoComponent implements OnInit {
         tipoEnvío:'Retiro en local',
         total:this.pedidosEnLocal.length
       }
+      
       this.data.push(p);
       this.data.push(p2);
+      console.log(this.pedidosFiltrados)
+      console.log(this.pedidosDelivery)
+      console.log(this.pedidosEnLocal)
+      console.log(this.data)
       this.introducirDatosEstadisticos();
     }, 2000);
   }

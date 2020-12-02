@@ -7,6 +7,7 @@ import { DetalleManufacturado } from 'src/app/models/DetalleManufacturado';
 import { Imagen } from 'src/app/models/Imagen';
 import { Plato } from 'src/app/models/Plato';
 import { ArticulosService } from 'src/app/services/articulos.service';
+import Swal from 'sweetalert2';
 declare var $ : any;
 
 @Component({
@@ -153,6 +154,12 @@ export class ModalAbmManufacturadosComponent implements OnInit {
       this.platoEnvio.detalles=this.manufacturado.detalles;
       console.log(this.platoEnvio)
       this.articuloService.postManufacturado(this.platoEnvio).subscribe((res)=>{
+        Swal.fire({
+          icon: 'success',
+          title: 'Se agregó correctamente',
+          showConfirmButton: false,
+          timer: 1000
+        })
         window.location.reload();
       })
       this.platoEnvio=null;
@@ -180,6 +187,12 @@ export class ModalAbmManufacturadosComponent implements OnInit {
         this.manufacturado=res;
         this.manufacturado=null;
         this.platoEnvio=null;
+        Swal.fire({
+          icon: 'success',
+          title: 'Se modificó correctamente',
+          showConfirmButton: false,
+          timer: 1000
+        })
         window.location.reload();
       })
     }
@@ -189,6 +202,12 @@ export class ModalAbmManufacturadosComponent implements OnInit {
     if(id===null || id===0 || id===undefined){
       for(var i:number=0; i<this.manufacturado.detalles.length; i++){
         if(this.manufacturado.detalles[i].insumo.id===idInsumo){
+          Swal.fire({
+            icon: 'success',
+            title: 'Se eliminó correctamente',
+            showConfirmButton: false,
+            timer: 1000
+          })
           this.manufacturado.detalles.splice(i, 1);
           break;
         }
@@ -197,6 +216,12 @@ export class ModalAbmManufacturadosComponent implements OnInit {
       this.articuloService.deleteDetalleManufacturado(id).subscribe((res)=>{
         for(var i:number=0; i<this.manufacturado.detalles.length; i++){
           if(this.manufacturado.detalles[i].id===id){
+            Swal.fire({
+              icon: 'success',
+              title: 'Se eliminó correctamente',
+              showConfirmButton: false,
+              timer: 1000
+            })
             this.manufacturado.detalles.splice(i, 1);
             break;
           }

@@ -16,3 +16,17 @@ export interface ArticuloInsumo{
     img?:Imagen;
     categoria?:CategoriaGeneral;
 }
+
+export interface InsumoStock{
+    Id?:number;
+    Nombre_Insumo?:string;
+    Descripcion?:string;
+    Es_Insumo?:string;
+    Precio_Compra?:number,
+    Precio_Venta?:number;
+    Stock_Actual?:number,
+    Stock_Min?:number,
+    Stock_Max?:number,
+    Unidad_de_Medida?:string;
+    Categoria?:string;
+}

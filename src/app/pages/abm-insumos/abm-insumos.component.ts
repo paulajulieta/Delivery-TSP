@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticuloInsumo } from 'src/app/models/ArticuloInsumo';
 import { ArticulosService } from 'src/app/services/articulos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-abm-insumos',
@@ -20,9 +21,32 @@ export class AbmInsumosComponent implements OnInit {
   }
 
   delete(id:number){
-    this.articuloService.deleteInsumo(id).subscribe((res)=>{
-      window.location.reload();
-    });
+
+    Swal.fire({
+      text: "¿Está seguro que desea eliminar?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.articuloService.deleteInsumo(id).subscribe((res)=>{
+      
+          Swal.fire({
+            icon: 'success',
+            title: 'Se eliminó correctamente',
+            showConfirmButton: false,
+            timer: 1000
+          })
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          
+        });
+      }
+    })
+    
   }
 
 }

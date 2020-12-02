@@ -14,12 +14,15 @@
     </div>
     <div class="row">
         <div class="col mt-5" style="text-align: center;">
-          <h5 class="card-title">Reacudaciones por periodo de tiempo</h5>
+          <h5 class="card-title">Recaudaciones por período de tiempo</h5>
           <h6>Total recaudado: $ {{totalRecaudado}}</h6>
           <div style="background: white">
             <p-chart *ngIf="cargo" type="bar" [data]="datosEstadisticos"></p-chart>
           </div>
         </div>
+    </div>
+    <div class="text-right" *ngIf="mostrar">
+      <button class="btn btn-info" (click)="exportarExcel()">Exportar a EXCEL</button>
     </div>
     <div class="table-responsive-md">
         <table class="table mt-3">
