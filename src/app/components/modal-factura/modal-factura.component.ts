@@ -38,6 +38,11 @@ export class ModalFacturaComponent implements OnInit {
 
     this.articuloService.getAllNoInsumos().subscribe((insumosApi)=>{
       this.insumos=insumosApi;
+      for(var i:number=0; i<this.insumos.length; i++){
+        if(this.insumos[i].stockActual===0){
+          this.insumos.splice(i, 1);
+        }
+      }
     })
 
     this.articuloService.getAllManufacturado().subscribe((platosApi)=>{

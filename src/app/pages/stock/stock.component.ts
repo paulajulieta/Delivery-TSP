@@ -30,7 +30,7 @@ export class StockComponent implements OnInit {
   buscarInsumo(event){
     console.log(event.target.value)
     this.articulos=this.articulosBD.filter((res)=>{
-      return res.nombre.toLowerCase().includes(event.target.value);
+      return res.nombre.toLowerCase().includes(event.target.value.toLowerCase());
     })
   }
 

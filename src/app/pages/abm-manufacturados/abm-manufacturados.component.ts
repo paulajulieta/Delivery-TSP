@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Plato } from 'src/app/models/Plato';
 import { ArticulosService } from 'src/app/services/articulos.service';
 import Swal from 'sweetalert2';
+declare var $:any
 
 @Component({
   selector: 'app-abm-manufacturados',
@@ -45,6 +46,12 @@ export class AbmManufacturadosComponent implements OnInit {
       }
     })
     
+  }
+
+  abrirModal(plato:Plato){
+    this.manufacturado=plato;
+    
+    $("#modalManufacturado").modal('show');
   }
 
 }

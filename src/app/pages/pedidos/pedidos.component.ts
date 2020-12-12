@@ -9,6 +9,7 @@ import { PedidoService } from 'src/app/services/pedido.service';
 })
 export class PedidosComponent implements OnInit {
 
+  pedidosBD:Pedido[]=[];
   pedidos:Pedido[]=[];
   pedidoId:number=0;
   
@@ -17,6 +18,13 @@ export class PedidosComponent implements OnInit {
   ngOnInit(): void {
     this.pedidoService.getAllPedido().subscribe((res)=>{
       this.pedidos=res;
+      this.pedidosBD=this.pedidos;
+    })
+  }
+
+  buscarPedidos(event){
+    this.pedidos=this.pedidosBD.filter((pedido)=>{
+      return pedido.estado.toLowerCase().includes(event.target.value.toLowerCase());
     })
   }
 

@@ -231,5 +231,10 @@ export class ModalAbmManufacturadosComponent implements OnInit {
     
   }
 
+  cerrarModal(){
+    this.detalles=[]
+    this.manufacturado=null
+    $("#modalManufacturado").modal('hide');
+  }
 
 }
