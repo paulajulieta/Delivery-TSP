@@ -56,9 +56,44 @@ export class HomeComponent implements OnInit {
     this.insumoService.getAllNoInsumos().subscribe((bebidasApi)=>{
       this.bebidasBD=bebidasApi;
       this.bebidas=this.bebidasBD;
+      for(let bebida of this.bebidasBD){
+        if(bebida.stockActual<bebida.stockMin/2){
+          bebida.sinStock=true;
+        }else{
+          bebida.sinStock=false;
+        }
+      }
       
       console.log(this.bebidas);
     });
+    setInterval(() => {
+      this.platoService.getAllPlato().subscribe((platosApi)=>{
+        this.platosBD=platosApi;
+        this.platos=this.platosBD
+        for(let plato of this.platos){
+          for(let detalle of plato.detalles){
+            if(detalle.insumo!=null){
+              if(detalle.insumo.stockActual<detalle.cantidad){
+                plato.sinStock=true;
+              }else{
+                plato.sinStock=false;
+              }
+            }
+          }
+        }
+      });
+      this.insumoService.getAllNoInsumos().subscribe((bebidasApi)=>{
+        this.bebidasBD=bebidasApi;
+        this.bebidas=this.bebidasBD;
+        for(let bebida of this.bebidasBD){
+          if(bebida.stockActual<bebida.stockMin/2){
+            bebida.sinStock=true;
+          }else{
+            bebida.sinStock=false;
+          }
+        }
+      });
+    }, 5000);
     this.authService.isAuth().subscribe((usuario)=>{
       if(usuario!=null){
         this.usuario=usuario;

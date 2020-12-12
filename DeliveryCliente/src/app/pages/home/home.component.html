@@ -192,7 +192,7 @@
             <p class="card-text" style="text-align: center;">{{bebidaAux?.descripcion}}</p>
             <p class="card-text" style="text-align: center; color: red;" *ngIf="bebidaAux.stockActual<(bebidaAux.stockMin/2)">SIN STOCK</p>
             <div class="text-right" >
-              <a class="btn btn-success" (click)="agregarCarrito(true, null, bebidaAux)">
+              <a class="btn btn-success" [hidden]="bebidaAux.sinStock===true" (click)="agregarCarrito(true, null, bebidaAux)">
                 <svg width="19" height="18" viewBox="0 0 16 16" class="bi bi-cart-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M8.5 5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 .5-.5z"/>
                   <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0v-2z"/>

@@ -19,7 +19,7 @@
             <div class="form-group">
               <input type="password" class="form-control" id="pass" formControlName="pass" placeholder="Password" (keyUp.enter)="ingresar(formularioLogin.controls['email'].value, formularioLogin.controls['pass'].value)">
               <div *ngIf="formularioLogin.controls['pass'].invalid && formularioLogin.controls['pass'].dirty" class="alert alert-dismissible alert-primary">
-                <span *ngIf="formularioLogin.controls['pass'].errors.required"><p>El correo es requerido</p></span>
+                <span *ngIf="formularioLogin.controls['pass'].errors.required"><p>La contraseña es requerida</p></span>
               </div>
             </div>
           </form>

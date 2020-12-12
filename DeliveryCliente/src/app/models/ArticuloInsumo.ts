@@ -14,4 +14,5 @@ export interface ArticuloInsumo{
     unidadDeMed?:UnidadMedida;
     img?:Imagen;
     categoria?:CategoriaGeneral;
+    sinStock?:boolean
 }
