@@ -21,7 +21,8 @@ export class ModalAbmManufacturadosComponent implements OnInit {
   formularioManufacturado:FormGroup
   formularioManufacturadoDetalle:FormGroup
   categorias:CategoriaGeneral[]=[];
-  insumos:ArticuloInsumo[]=[]
+  insumos:ArticuloInsumo[]=[];
+  insumoApi:ArticuloInsumo[]=[];
   detalleEnvio:DetalleManufacturado={};
   platoEnvio:Plato={}
   constructor(private fb:FormBuilder, private articuloService:ArticulosService) { }
@@ -32,6 +33,12 @@ export class ModalAbmManufacturadosComponent implements OnInit {
     })
     this.articuloService.getAllInsumo().subscribe((insumoApi)=>{
       this.insumos=insumoApi;
+      for(let insumo of this.insumos){
+        if(insumo.esInsumo){
+          this.insumoApi.push(insumo);
+        }
+      }
+      this.insumos=this.insumoApi
     })
 
     console.log(this.manufacturado)
@@ -176,8 +183,9 @@ export class ModalAbmManufacturadosComponent implements OnInit {
         imagenNueva.url=this.formularioManufacturado.controls['img'].value;
         this.platoEnvio.img=imagenNueva;
       }
+
       for(let categoria of this.categorias){
-        if(categoria.id===this.formularioManufacturado.controls['categoria'].value){
+        if(categoria.id===parseInt(this.formularioManufacturado.controls['categoria'].value)){
           this.platoEnvio.categoriaGral=categoria;
         }
       }

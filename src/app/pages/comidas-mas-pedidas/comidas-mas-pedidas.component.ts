@@ -16,9 +16,12 @@ export interface ComidaMasPedida{
   styleUrls: ['./comidas-mas-pedidas.component.scss']
 })
 export class ComidasMasPedidasComponent implements OnInit {
+  fechaFiltroInicio:Date;
+  fechaFiltroFin:Date;
   datosEstadisticos:any;
   datos:ComidaMasPedida[]=[];
   pedidos:Pedido[]=[];
+  pedidosFiltrados:Pedido[]=[];
   platos:Plato[]=[];
   labels: string []=[];
   datosNumericos: any []=[];
@@ -35,14 +38,14 @@ export class ComidasMasPedidasComponent implements OnInit {
       this.platos=platosApi;
       console.log(this.platos)
     })
-    setTimeout(() => {
+    /* setTimeout(() => {
       this.mostrarDatos();
-    }, 2000);
+    }, 2000); */
     
   }
 
   mostrarDatos(){
-    for(let pedido of this.pedidos){
+    for(let pedido of this.pedidosFiltrados){
       for(let detalle of pedido.detalles){
         for(let plato of this.platos){
           if(detalle.manufacturado!=null){
@@ -89,6 +92,37 @@ export class ComidasMasPedidasComponent implements OnInit {
     }
     this.introducirDatosEstadisticos();
     console.log(this.datos)
+  }
+
+  filtrarDia(fechaInicio:Date, fechaFin:Date){
+    this.labels=[];
+    this.datos=[];
+    this.datosNumericos=[];
+    this.datosEstadisticos=[];
+    this.colorArray=[];
+    this.cargo=false;
+    var fechaI:string=fechaInicio.toString();
+    let arrayStringI=fechaI.split('-');
+    fechaI=arrayStringI[1]+'/'+arrayStringI[2]+'/'+arrayStringI[0]+' 00:01:00'
+    var fechaF:string=fechaFin.toString();
+    let arrayStringF=fechaF.split('-');
+    fechaF=arrayStringF[1]+'/'+arrayStringF[2]+'/'+arrayStringF[0]+' 23:59:00'
+    
+    var fechaIni=new Date(fechaI);
+    var fechaFi=new Date(fechaF);
+
+    for(const pedido of this.pedidos){
+      let arrayString=pedido.fecha.split('/');
+      let fechaFixeada=(arrayString[1]+'/'+arrayString[0]+'/'+arrayString[2]);
+      const fechaPedido=new Date(fechaFixeada);
+      console.log(fechaFixeada)
+      if(fechaPedido>=fechaIni && fechaPedido<=fechaFi){
+        this.pedidosFiltrados.push(pedido);
+      }
+    }
+    setTimeout(() => {
+      this.mostrarDatos();
+    }, 2000);
   }
 
   getRandomColor() {

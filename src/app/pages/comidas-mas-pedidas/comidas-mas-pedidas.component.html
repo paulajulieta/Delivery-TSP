@@ -1,9 +1,20 @@
-<div class="container-fluid mt-5" style="width: 1200px;">
+<div class="container mt-5" >
     <h2>COMIDAS MÁS PEDIDAS</h2>
     <hr class="border-primary">
+    <div class="row">
+        <div class="col-5">
+          <input type="date" class="form-control" [(ngModel)]="fechaFiltroInicio" name="fechaI">
+        </div>
+        <div class="col-5">
+            <input type="date" class="form-control" [(ngModel)]="fechaFiltroFin" name="fechaF">
+        </div>
+        <div class="col-2" style="text-align: right;">
+          <button class="btn btn-info" (click)="filtrarDia(fechaFiltroInicio, fechaFiltroFin)">Buscar</button>
+        </div>
+    </div><br><br>
     <div class="row">
         <div class="col">
             <p-chart *ngIf="cargo" type="pie" [data]="datosEstadisticos"></p-chart>
         </div>
-    </div>
+    </div><br><br><br><br><br>
 </div>

@@ -87,20 +87,22 @@ export class ModalFacturaComponent implements OnInit {
             this.detalleNuevo.insumo=this.insumoNuevo;
             if(this.cantidad>0){
               this.detalleNuevo.cantidad=this.cantidad;
-              this.factura.total+=this.factura.montoDescuento+this.factura.detalles[i].insumo.precioVta*this.cantidad;
+              this.factura.total+=this.factura.montoDescuento+this.detalleNuevo.insumo.precioVta*this.cantidad;
               if(this.factura.pedido.tipoEnvio==='Retiro en local'){
                 this.factura.montoDescuento=this.factura.total*0.1;
                 this.factura.total=this.factura.total-this.factura.montoDescuento;
+                this.detalleNuevo.subtotal=this.detalleNuevo.insumo.precioVta*this.detalleNuevo.cantidad;
               }
             }else{
               this.detalleNuevo.cantidad=1;
-              this.factura.total+=this.factura.montoDescuento+this.factura.detalles[i].insumo.precioVta*this.cantidad;
+              this.factura.total+=this.factura.montoDescuento+this.detalleNuevo.insumo.precioVta*this.cantidad;
               if(this.factura.pedido.tipoEnvio==='Retiro en local'){
                 this.factura.montoDescuento=this.factura.total*0.1;
                 this.factura.total=this.factura.total-this.factura.montoDescuento;
+                this.detalleNuevo.subtotal=this.detalleNuevo.insumo.precioVta*this.detalleNuevo.cantidad;
               }
             }
-            this.detalleNuevo.subtotal=this.factura.detalles[i].insumo.precioVta*this.factura.detalles[i].cantidad;
+            
             this.detalleNuevo.factura={};
             this.detalleNuevo.factura.id=this.factura.id;
             this.detalleNuevo.pedido={};
@@ -116,6 +118,7 @@ export class ModalFacturaComponent implements OnInit {
               if(this.factura.pedido.tipoEnvio==='Retiro en local'){
                 this.factura.montoDescuento=this.factura.total*0.1;
                 this.factura.total=this.factura.total-this.factura.montoDescuento;
+                this.detalleNuevo.subtotal=this.detalleNuevo.insumo.precioVta*this.detalleNuevo.cantidad;
               }
             }else{
               this.detalleNuevo.cantidad=1;
@@ -123,9 +126,10 @@ export class ModalFacturaComponent implements OnInit {
               if(this.factura.pedido.tipoEnvio==='Retiro en local'){
                 this.factura.montoDescuento=this.factura.total*0.1;
                 this.factura.total=this.factura.total-this.factura.montoDescuento;
+                this.detalleNuevo.subtotal=this.detalleNuevo.insumo.precioVta*this.detalleNuevo.cantidad;
               }
             }
-            this.detalleNuevo.subtotal=this.detalleNuevo.insumo.precioVta*this.factura.detalles[i].cantidad;
+            
             this.detalleNuevo.factura={};
             this.detalleNuevo.factura.id=this.factura.id;
             this.detalleNuevo.pedido={};

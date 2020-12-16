@@ -28,7 +28,8 @@ export class PedidosPorClienteComponent implements OnInit {
   datosNumericos: any []=[];
   colorArray : any []=[];
   cargo:boolean=false;
-  fechaFiltro:Date;
+  fechaFiltroInicio:Date;
+  fechaFiltroFin:Date;
   pedidoId:number;
   totalPedidos:number=0;
   constructor(private usuarioService:UsuarioService, private pedidoService:PedidoService) { }
@@ -43,7 +44,7 @@ export class PedidosPorClienteComponent implements OnInit {
     })
   }
 
-  filtrar(user:string, fecha:Date){
+  filtrar(user:string, fechaInicio:Date, fechaFin:Date){
     this.totalPedidos=0;
     this.pedidos=[];
     this.pedidosFiltrados=[];
@@ -59,14 +60,24 @@ export class PedidosPorClienteComponent implements OnInit {
     this.pedidoService.getAllByClienteHistorial(parseInt(user)).subscribe((pedidosApi)=>{
       this.pedidos=pedidosApi;
     })
-    this.fechaFiltro=new Date(fecha);
+    /* this.fechaFiltro=new Date(fecha); */
+    var fechaI:string=fechaInicio.toString();
+    let arrayStringI=fechaI.split('-');
+    fechaI=arrayStringI[1]+'/'+arrayStringI[2]+'/'+arrayStringI[0]+' 00:01:00'
+    var fechaF:string=fechaFin.toString();
+    let arrayStringF=fechaF.split('-');
+    fechaF=arrayStringF[1]+'/'+arrayStringF[2]+'/'+arrayStringF[0]+' 23:59:00'
+    
+    var fechaIni=new Date(fechaI);
+    var fechaFi=new Date(fechaF);
     
     setTimeout(() => {
       for(const pedido of this.pedidos){
         let arrayString=pedido.fecha.split('/');
         let fechaFixeada=(arrayString[1]+'/'+arrayString[0]+'/'+arrayString[2]);
         const fechaPedido=new Date(fechaFixeada);
-        if(fechaPedido>this.fechaFiltro){
+        console.log(fechaFixeada)
+        if(fechaPedido>=fechaIni && fechaPedido<=fechaFi){
           this.pedidosFiltrados.push(pedido);
           this.totalPedidos+=1;
         }
@@ -74,7 +85,6 @@ export class PedidosPorClienteComponent implements OnInit {
         console.log(fechaFixeada)
         console.log(fechaPedido)
       }
-      console.log(this.fechaFiltro)
       for(let pedido of this.pedidosFiltrados){
         if(pedido.tipoEnvio==='Delivery'){
           this.pedidosDelivery.push(pedido);

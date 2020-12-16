@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5" style="width: 1200px;">
+<div class="container mt-5" >
     <h2>PEDIDOS POR CLIENTE</h2>
     <hr class="border-primary">
     <div class="row">
@@ -7,11 +7,14 @@
                 <option *ngFor="let usuario of usuarios" value={{usuario.id}}  >{{usuario.nombre}} {{usuario.apellido}}</option>
             </select>
         </div>
-        <div class="col-5">
-            <input type="date" class="form-control" [(ngModel)]="fechaFiltro" name="fecha">
+        <div class="col">
+            <input type="date" class="form-control" [(ngModel)]="fechaFiltroInicio" name="fecha">
         </div>
+        <div class="col">
+          <input type="date" class="form-control" [(ngModel)]="fechaFiltroFin" name="fechaF">
+      </div>
         <div class="col-2" style="text-align: right;">
-          <button class="btn btn-info" (click)="filtrar(userSeleccionado, fechaFiltro)"><i class="fa fa-search"></i>Buscar</button>
+          <button class="btn btn-info" (click)="filtrar(userSeleccionado, fechaFiltroInicio, fechaFiltroFin)"><i class="fa fa-search"></i>Buscar</button>
         </div>
     </div>
     <div class="row">
