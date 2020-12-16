@@ -34,6 +34,10 @@ export class PedidoService {
     return this.http.get<Pedido[]>(this.urlServidor1+"byClienteHistorial/"+idcliente);
   }
 
+  getAllByClienteHistorialDescendente(idcliente:number):Observable<Pedido[]>{
+    return this.http.get<Pedido[]>(this.urlServidor1+"byClienteHistorialDesc/"+idcliente);
+  }
+
   postPedido(pedido:Pedido):Observable<Pedido>{
     return this.http.post<Pedido>(this.urlServidor1, pedido);
   }

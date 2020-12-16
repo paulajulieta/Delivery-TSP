@@ -9,16 +9,16 @@
             <div class="row pedido mt-5" *ngFor="let pedidoPendiente of pedidosPendientes">
                 <div class="col" >
                     <div class="row">
-                        <div class="col-3 border-right border-bottom border-primary">
+                        <div class="col border-right border-bottom border-primary">
                             <h4 class="texto mt-1">{{pedidoPendiente?.id}}</h4>
                         </div>
-                        <div class="col-3 border-right border-bottom border-primary">
+                        <div class="col border-right border-bottom border-primary">
                             <h4 class="texto mt-1">{{pedidoPendiente?.estado}}</h4>
                         </div>
-                        <div class="col-3 border-right border-bottom border-primary">
+                        <div class="col border-right border-bottom border-primary">
                             <h4 class="texto mt-1">{{pedidoPendiente?.tipoEnvio}}</h4>
                         </div>
-                        <div class="col-3 border-bottom border-primary">
+                        <div class="col border-bottom border-primary">
                             <h4 class="texto mt-1">{{pedidoPendiente?.horaEstimadaFin}}</h4>
                         </div>
                     </div>

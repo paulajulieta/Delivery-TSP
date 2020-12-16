@@ -292,22 +292,64 @@ export class ModalCarritoComponent implements OnInit {
         })
         
     
-          //alert se esta procesando su pedido
       }else{
         // NO ESTA EN HORARIO, EL PEDIDO PASA A LAS 20:00:00
-        Swal.fire({
+        /* Swal.fire({
           icon: 'error',
           title: 'Actualmente se encuentra cerrado, podrá realizar su pedido cuando abra',
           showConfirmButton: false,
           timer: 2000
+        }) */
+        tiempoFinal = fechaPedido.toLocaleDateString()+" "+fechaPedido.toLocaleTimeString();
+        tiempoFinal2 = horaFinalizacion.toLocaleDateString()+" "+horaFinalizacion.toLocaleTimeString();
+        this.pedidoEnvio.fecha=tiempoFinal;
+        this.pedidoEnvio.cliente=this.carrito.cliente;
+        this.pedidoEnvio.domicilioCliente=this.carrito.domicilioCliente;
+        this.pedidoEnvio.montoDescuento=this.carrito.montoDescuento;
+        this.pedidoEnvio.tipoEnvio=this.carrito.tipoEnvio;
+        this.pedidoEnvio.total=this.carrito.total;
+        this.pedidoEnvio.formaPago=this.carrito.formaPago;
+        //this.pedidoEnvio.horaEstimadaFin=tiempoFinal2;
+        this.pedidoEnvio.estado="Pendiente";
+        this.pedidoEnvio.detalles=new Array<PedidoDetalle>();
+        for(let detalle of this.carrito.detallesCarrito){
+         
+          if(detalle.insumo!=null){
+            this.detallePedido.cantidad=detalle.cantidad;
+            this.detallePedido.subtotal=detalle.subtotal;
+            this.detallePedido.insumo=detalle.insumo;
+            this.pedidoEnvio.detalles.push(this.detallePedido);
+            this.detallePedido={};
+            
+          }else if(detalle.manufacturado!=null){
+            this.detallePedido.cantidad=detalle.cantidad;
+            this.detallePedido.subtotal=detalle.subtotal;
+            this.detallePedido.manufacturado=detalle.manufacturado;
+            this.pedidoEnvio.detalles.push(this.detallePedido);
+            this.detallePedido={};
+          }
+        }
+        this.pedidoService.postPedido(this.pedidoEnvio).subscribe((res)=>{
+          console.log(res);
+          this.carritoService.delete(this.carrito.id).subscribe((res)=>{
+            console.log(res);
+            Swal.fire({
+              icon: 'success',
+              title: 'Se está procesando su pedido',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            this.carrito={};
+            this.totalConDescuento=0;
+            this.totalSinDescuento=0;
+            this.descuento=false;
+            this.tiempoPedido=0;
+            this.tiempoDelivery=0;
+            this.pedidoEnvio={};
+            this.detallePedido={};
+            this.mensaje="Su carrito está vacío";
+          })
         })
-        /* tiempoFinal = fechaPedido.toLocaleDateString()+" "+fechaPedido.toLocaleTimeString();
-        horaFinalizacion.setHours(20);
-        horaFinalizacion.setMinutes(0);
-        horaFinalizacion.setSeconds(0);
-        horaFinalizacion.setTime(horaFinalizacion.getTime() + ((this.tiempoPedido + 15 + this.tiempoDelivery)*60000));
-        tiempoFinal2 = fechaPedido.toLocaleDateString()+" "+horaFinalizacion.toLocaleTimeString(); */
-            //alert esta fuera de horario
     
       }
       }

@@ -24,7 +24,7 @@ export class HistorialPedidosComponent implements OnInit {
         this.usuario=usuario;
         this.usuarioService.getEmail(this.usuario.email).subscribe((usuarioRes)=>{
           this.usuarioApi=usuarioRes;
-          this.pedidoService.getAllByClienteHistorial(this.usuarioApi.id).subscribe((pedidoRes)=>{
+          this.pedidoService.getAllByClienteHistorialDescendente(this.usuarioApi.id).subscribe((pedidoRes)=>{
             this.pedidosHistorial=pedidoRes;
             console.log(pedidoRes);
           })
@@ -37,7 +37,7 @@ export class HistorialPedidosComponent implements OnInit {
           this.usuario=usuario;
           this.usuarioService.getEmail(this.usuario.email).subscribe((usuarioRes)=>{
             this.usuarioApi=usuarioRes;
-            this.pedidoService.getAllByClienteHistorial(this.usuarioApi.id).subscribe((pedidoRes)=>{
+            this.pedidoService.getAllByClienteHistorialDescendente(this.usuarioApi.id).subscribe((pedidoRes)=>{
               this.pedidosHistorial=pedidoRes;
               console.log(pedidoRes);
             })
